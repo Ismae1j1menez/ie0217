@@ -1,6 +1,6 @@
 # Previo 3
 
-Este README describe el uso del Makefile para ejecutar todos los códigos presentes en la carpeta de Previos 2. La carpeta contiene una variedad de archivos que pueden ser compilados y ejecutados fácilmente con el Makefile, permitiendo también eliminar todos los archivos generados de tipo `.exe` después de su uso.
+Este README describe el uso del Makefile para ejecutar todos los códigos presentes en la carpeta de Previos 3. La carpeta contiene una variedad de archivos que pueden ser compilados y ejecutados fácilmente con el Makefile, permitiendo también eliminar todos los archivos generados de tipo `.exe` después de su uso.
 
 ## Uso del Makefile
 

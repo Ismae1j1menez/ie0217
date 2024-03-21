@@ -1,17 +1,16 @@
-//cpp
-// C++ Program to display address of each element of an array
 #include <iostream>
 using namespace std;
 
 int main() {
+    // Se declara el arreglo de 3 elementos de tipo flotante
     float arr[3];
 
-    // declare pointer variable
+    // Se declara el puntero de tipo flotante
     float *ptr;
 
     cout << "Displaying address using arrays: " << endl;
 
-    // use for loop to print addresses of all array elements
+    // Con el loop se imprime la dirección de cada elemento
     for (int i = 0; i < 3; ++i) {
         cout << "&arr[" << i << "] = " << &arr[i] << endl;
     }
@@ -21,8 +20,8 @@ int main() {
 
     cout<<"\nDisplaying address using pointers: "<<endl;
 
-    // use for loop to print addresses of all array elements
-    // using pointer notation
+    // Se imprime la dirección de todo el arreglo con la notación de punteros,
+    // es decir ptr + 1, ptr + 2, ptr + 3...
     for (int i = 0; i < 3; ++i) {
         cout << "ptr + " << i << " =" << ptr + i << endl;
     }
