@@ -32,30 +32,29 @@ El Makefile incluye instrucciones detalladas para su uso. Es importante escribir
 
 Estos programas se pueden compilar utilizando el objetivo `P1`:
 
-- Anidaciones.cpp
-- Argumentos_main.cpp
-- Argumentos.cpp
-- Estructuras.cpp
-- Estructuras2.cpp
-- holaMundo.cpp
-- holaMundo2.cpp
-- holaMundo3.cpp
-- holaMundo4.cpp
-- Loops.cpp
-- Loops2.cpp
-- Loops3.cpp
-- Loops4.cpp
-- Prototipo_fun.cpp
-- Return.cpp
-- sobrecarga.cpp
-- sobrecarga2.cpp
-- switch_case.cpp
-- Variables_alcance.cpp
-- Variables_alcance2.cpp
-- Variavles_alcance3.cpp
+- change.cpp
+- Defines.cpp
+- Defines2.cpp
+- Enums.cpp
+- Enums2.cpp
+- Enums3.cpp
+- Factorial.cpp
+- goto.cpp
+- principal.cpp
+- Punteros_estructuras.cpp
+- Punteros_estructuras2.cpp
+- Punteros_estructuras3.cpp
+- Punteros_funciones.cpp
+- Punteros_funciones2.cpp
+- Punteros_yarreglos.cpp
+- Punteros.cpp
+- Punterosdobles.cpp
+- Type_casting.cpp
+- Type_casting2.cpp
+- variables_adres.cpp
 
 ### Programas que Necesitan Dos Archivos para Compilar
 
 Estos programas requieren el uso del objetivo `P2` para su compilación:
 
-- extern_program1.cpp y extern_program2.cpp
+- main.cpp y sum.cpp
