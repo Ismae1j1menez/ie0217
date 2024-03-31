@@ -3,24 +3,25 @@
 #include <random>
 using namespace std;
 
-Estructura iniciar_juego(){
+Estructura iniciar_juego(std::string* diccionario_palabras, int num_palabras, int intentos_dificultad){
     std::random_device rd;  // Genera una semilla diferente en cada ejecución
     std::mt19937 gen(rd()); // Inicializar el motor de generación con la semilla anterior
     std::uniform_int_distribution<int> distrib(0, num_palabras - 1); // Es una clase que genera numeros aleatorios en un rango
     std::string palabra_seleccionada = diccionario_palabras[distrib(gen)]; // Selecciona la palabra, gen es la semilla anterior
-    cout << "Palabra seleccionada: " << palabra_seleccionada << " Indice del diccionario: " << distrib(gen) << std::endl;
+    cout << "Palabra seleccionada aleatoriamente: " << palabra_seleccionada << std::endl;
     cout << palabra_seleccionada.length() << endl;
     Estructura palabra_a_adiviniar;
     palabra_a_adiviniar.palabra_adivinar = palabra_seleccionada;
     palabra_a_adiviniar.estado_actual = std::string(palabra_seleccionada.length(), '_');
+    palabra_a_adiviniar.intentos_maximos = intentos_dificultad;
     cout << "Adivina la palabra: " << palabra_a_adiviniar.estado_actual << endl;
     return palabra_a_adiviniar;
 }
 
-void agregar_palabra() {
-    if (num_palabras < 100){
+void agregar_palabra(std::string* diccionario_palabras, int* num_palabras) {
+    if (*num_palabras < 100){
         cout << "Ingrese la palabra que desea agreagar: "; 
-        cin >> diccionario_palabras[num_palabras++]; 
+        cin >> diccionario_palabras[*num_palabras++]; 
         cout << "Palabra agregada correctamente.";
     } else {
         cout << "No hay espacio para más palabras." << endl; 
@@ -55,8 +56,8 @@ void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
 int adivinanza(Estructura* palabra_adivinadas) {
     int intentos_actuales = palabra_adivinadas[0].intentos_actuales; 
     int intentos = palabra_adivinadas[0].intentos_maximos;
-    cout << "Intentos actuales: " << intentos_actuales;
-    cout << "Intentos máximos: " << intentos;
+    cout << "Intentos actuales: " << intentos_actuales << endl;
+    cout << "Intentos máximos: " << intentos << endl;
         if (intentos == intentos_actuales ){
             return false; 
             cout << "Se acabaron la cantidad de intentos: " << endl; 

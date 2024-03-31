@@ -70,19 +70,18 @@ int main() {
                     intentos_dificultad = 3;  
                 break;
             }
-            cout << "Dificultad actual: " << palabra_adivinadas[0].intentos_maximos << endl;
+            cout << "Dificultad antes de ingresar a la estructura: " << palabra_adivinadas[0].intentos_maximos << endl;
             break;
         case INICIAR:
             if (intentos_dificultad != 0){
-                cout << "Dificultad actual2: " << palabra_adivinadas[0].intentos_maximos << endl;
-                palabra_adivinadas[cantidad_adivinadas] = iniciar_juego();
-                palabra_adivinadas[0].intentos_maximos = intentos_dificultad;
-                cout << "Dificultad actual3: " << palabra_adivinadas[0].intentos_maximos << endl;
+                cout << "Dificultad prueba1: " << palabra_adivinadas[0].intentos_maximos << endl;
+                palabra_adivinadas[cantidad_adivinadas] = iniciar_juego(diccionario_palabras, num_palabras, intentos_dificultad);
+                cout << "Dificultad prueba3: " << palabra_adivinadas[0].intentos_maximos << endl;
                 while (Juego == true) {
                     verificar_letras(palabra_adivinadas, cantidad_adivinadas);
-                    cout << "Dificultad actual4: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    cout << "Dificultad prueba4: " << palabra_adivinadas[0].intentos_maximos << endl;
                     Juego = adivinanza(palabra_adivinadas);
-                    cout << "Dificultad actual5: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    cout << "Dificultad prueba5: " << palabra_adivinadas[0].intentos_maximos << endl;
                 }
             } else {
                 cout << "No se ha seleccionado ninguna dificultad.";
@@ -100,7 +99,7 @@ int main() {
             //cout << cantidad_adivinadas;
             break;
         case AGREGAR_PALABRA:
-            agregar_palabra();
+            agregar_palabra(diccionario_palabras, &num_palabras);
             break; 
         case SALIR:
             break;
