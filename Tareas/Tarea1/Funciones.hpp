@@ -6,7 +6,7 @@
 Estructura iniciar_juego(); 
 void agregar_palabra();
 void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas);
-int adivinanza(Estructura* palabra_adivinadas, int cantidad_adivinadas);
+int adivinanza(Estructura* palabra_adivinadas);
 
 
 #endif

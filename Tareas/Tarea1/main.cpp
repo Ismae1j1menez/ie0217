@@ -35,6 +35,7 @@ enum Dificultad {
 int main() {
     Estructura palabra_adivinadas[MAX_PALABRAS];
     int cantidad_adivinadas = 0;
+    int intentos_dificultad;
     int opcion; 
     int dificultad; 
     bool Juego = true;
@@ -60,22 +61,31 @@ int main() {
             switch (dificultad)
             {
                 case FACIL:
-                    palabra_adivinadas[0].intentos_maximos = 7; 
+                    intentos_dificultad = 7; 
                 break;
                 case INTERMEDIO: 
-                    palabra_adivinadas[0].intentos_maximos = 5; 
+                    intentos_dificultad  = 5; 
                 break;
                 case DIFICIL:
-                    palabra_adivinadas[0].intentos_maximos = 3; 
+                    intentos_dificultad = 3;  
                 break;
             }
-            cout << palabra_adivinadas[0].intentos_maximos << endl;
+            cout << "Dificultad actual: " << palabra_adivinadas[0].intentos_maximos << endl;
             break;
         case INICIAR:
-            palabra_adivinadas[cantidad_adivinadas] = iniciar_juego();
-            while (Juego == true) {
-                verificar_letras(palabra_adivinadas, cantidad_adivinadas);
-                Juego = adivinanza(palabra_adivinadas, cantidad_adivinadas);
+            if (intentos_dificultad != 0){
+                cout << "Dificultad actual2: " << palabra_adivinadas[0].intentos_maximos << endl;
+                palabra_adivinadas[cantidad_adivinadas] = iniciar_juego();
+                palabra_adivinadas[0].intentos_maximos = intentos_dificultad;
+                cout << "Dificultad actual3: " << palabra_adivinadas[0].intentos_maximos << endl;
+                while (Juego == true) {
+                    verificar_letras(palabra_adivinadas, cantidad_adivinadas);
+                    cout << "Dificultad actual4: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    Juego = adivinanza(palabra_adivinadas);
+                    cout << "Dificultad actual5: " << palabra_adivinadas[0].intentos_maximos << endl;
+                }
+            } else {
+                cout << "No se ha seleccionado ninguna dificultad.";
             }
             /*cout << "Actual verificacion: " << palabra_adivinadas[0].estado_actual << endl; 
             cout << "Actual verificacion: " << palabra_adivinadas[1].estado_actual << endl;

@@ -45,20 +45,22 @@ void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
         cout << "¡Bien! La letra '" << letra_ingresada << "' está en la palabra." << endl;
     } else {
         cout << "Lo siento, la letra '" << letra_ingresada << "' no está en la palabra." << endl;
-        palabra_adivinadas[cantidad_adivinadas].intentos_actuales += 1; 
+        palabra_adivinadas[0].intentos_actuales += 1; 
     }
     cout << "Progreso: " << palabra_adivinadas[cantidad_adivinadas].estado_actual << endl;
-    cout << "Intentos: " << palabra_adivinadas[cantidad_adivinadas].intentos_actuales << endl;
+    cout << "Intentos: " << palabra_adivinadas[0].intentos_actuales << endl;
 }
 
 
-int adivinanza(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
-    int intentos_actuales = palabra_adivinadas[cantidad_adivinadas].intentos_actuales; 
-    int intentos = palabra_adivinadas[cantidad_adivinadas].intentos_maximos; 
-    if (intentos == intentos_actuales){
-        return false; 
-        cout << "Se acabaron la cantidad de intentos: " << endl; 
-    } else {
-        return true;
-    }
+int adivinanza(Estructura* palabra_adivinadas) {
+    int intentos_actuales = palabra_adivinadas[0].intentos_actuales; 
+    int intentos = palabra_adivinadas[0].intentos_maximos;
+    cout << "Intentos actuales: " << intentos_actuales;
+    cout << "Intentos máximos: " << intentos;
+        if (intentos == intentos_actuales ){
+            return false; 
+            cout << "Se acabaron la cantidad de intentos: " << endl; 
+        } else {
+            return true;
+        }
 }
