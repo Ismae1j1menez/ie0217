@@ -5,8 +5,8 @@
 // Prototipos de la funciones que luego son definifas en Funciones.cpp
 Estructura iniciar_juego(); 
 void agregar_palabra();
-void verificar_letras();
-int adivinanza();
+void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas);
+int adivinanza(Estructura* palabra_adivinadas, int cantidad_adivinadas);
 
 
 #endif

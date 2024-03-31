@@ -26,10 +26,18 @@ enum Opciones {
     SALIR
 };
 
+enum Dificultad {
+    FACIL = 1,
+    INTERMEDIO, 
+    DIFICIL
+};
+
 int main() {
     Estructura palabra_adivinadas[MAX_PALABRAS];
     int cantidad_adivinadas = 0;
     int opcion; 
+    int dificultad; 
+    bool Juego = true;
 
     do {
         cout << "\nMenu:\n";
@@ -43,18 +51,43 @@ int main() {
         switch (opcion)
         {
         case DIFICULTAD:
-            verificar_letras();
+            cout << "\nSeleccione la dificultad:\n";
+            cout << "\n1. Facil\n";
+            cout << "\n2. Intermedio\n";
+            cout << "\n3. Dificil\n";
+            cout << "\nIngrese su opcion: \n";
+            cin  >> dificultad;
+            switch (dificultad)
+            {
+                case FACIL:
+                    palabra_adivinadas[0].intentos_maximos = 7; 
+                break;
+                case INTERMEDIO: 
+                    palabra_adivinadas[0].intentos_maximos = 5; 
+                break;
+                case DIFICIL:
+                    palabra_adivinadas[0].intentos_maximos = 3; 
+                break;
+            }
+            cout << palabra_adivinadas[0].intentos_maximos << endl;
             break;
         case INICIAR:
             palabra_adivinadas[cantidad_adivinadas] = iniciar_juego();
+            while (Juego == true) {
+                verificar_letras(palabra_adivinadas, cantidad_adivinadas);
+                Juego = adivinanza(palabra_adivinadas, cantidad_adivinadas);
+            }
+            /*cout << "Actual verificacion: " << palabra_adivinadas[0].estado_actual << endl; 
+            cout << "Actual verificacion: " << palabra_adivinadas[1].estado_actual << endl;
+            cout << "Actual verificacion: " << palabra_adivinadas[2].estado_actual << endl;
             cout << "Palabra diccionario: " << diccionario_palabras[num_palabras -1] << endl; 
             cout << "Palabra diccionario: " << diccionario_palabras[31] << endl; 
             cout << "Palabra a adivinar 1: " << palabra_adivinadas[0].palabra_adivinar << endl;
             cout << "Palabra a adivinar 2: " << palabra_adivinadas[1].palabra_adivinar << endl;
             cout << "Palabra a adivinar 3: " << palabra_adivinadas[2].palabra_adivinar << endl;
-            cout << "Palabra a adivinar 4: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl;
+            cout << "Palabra a adivinar 4: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; */
             cantidad_adivinadas++;
-            cout << cantidad_adivinadas;
+            //cout << cantidad_adivinadas;
             break;
         case AGREGAR_PALABRA:
             agregar_palabra();

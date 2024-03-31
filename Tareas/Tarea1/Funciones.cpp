@@ -12,10 +12,8 @@ Estructura iniciar_juego(){
     cout << palabra_seleccionada.length() << endl;
     Estructura palabra_a_adiviniar;
     palabra_a_adiviniar.palabra_adivinar = palabra_seleccionada;
-    for (int i = 0; i < palabra_seleccionada.length(); i++){
-        cout << "_ "; 
-    }
-    cout << endl; 
+    palabra_a_adiviniar.estado_actual = std::string(palabra_seleccionada.length(), '_');
+    cout << "Adivina la palabra: " << palabra_a_adiviniar.estado_actual << endl;
     return palabra_a_adiviniar;
 }
 
@@ -29,28 +27,38 @@ void agregar_palabra() {
     }
 }
 
-void verificar_letras() {
-    std::string palabra_verficar = "casa"; 
+void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
     char letra_ingresada;
+    std::string palabra_verficar = palabra_adivinadas[cantidad_adivinadas].palabra_adivinar; 
     cout << "Ingrese la letra a verificar: ";
     cin >> letra_ingresada;
+    bool letra_encontrada = false; 
+
     for (int i = 0; i < palabra_verficar.length(); i++){
         if (palabra_verficar[i] == letra_ingresada) {
-            cout << letra_ingresada << " ";
-        } else {
-            cout << "_ ";
+            palabra_adivinadas[cantidad_adivinadas].estado_actual[i] = letra_ingresada;
+            letra_encontrada = true;
         }
     }
-    cout << endl; 
-    cout << "No se encontro ninguna letra que coincida con la letra ingresada";
+
+    if (letra_encontrada) {
+        cout << "¡Bien! La letra '" << letra_ingresada << "' está en la palabra." << endl;
+    } else {
+        cout << "Lo siento, la letra '" << letra_ingresada << "' no está en la palabra." << endl;
+        palabra_adivinadas[cantidad_adivinadas].intentos_actuales += 1; 
+    }
+    cout << "Progreso: " << palabra_adivinadas[cantidad_adivinadas].estado_actual << endl;
+    cout << "Intentos: " << palabra_adivinadas[cantidad_adivinadas].intentos_actuales << endl;
 }
 
-int adivinanza() {
-    int ret_verificar = 1; 
-    int intentos = 3; 
-    if (intentos == 3 || ret_verificar == 1){
-        return 1; 
+
+int adivinanza(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
+    int intentos_actuales = palabra_adivinadas[cantidad_adivinadas].intentos_actuales; 
+    int intentos = palabra_adivinadas[cantidad_adivinadas].intentos_maximos; 
+    if (intentos == intentos_actuales){
+        return false; 
+        cout << "Se acabaron la cantidad de intentos: " << endl; 
     } else {
-        return 0;
+        return true;
     }
 }
