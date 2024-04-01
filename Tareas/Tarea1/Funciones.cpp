@@ -28,7 +28,7 @@ Estructura iniciar_juego(std::string* diccionario_palabras, int num_palabras, in
 void agregar_palabra(std::string* diccionario_palabras, int* num_palabras) {
     if (*num_palabras < 100){
         cout << "Ingrese la palabra que desea agreagar: "; 
-        cin >> diccionario_palabras[*num_palabras++]; 
+        cin >> diccionario_palabras[(*num_palabras)++]; 
         cout << "Palabra agregada correctamente.";
     } else {
         cout << "No hay espacio para más palabras." << endl; 
@@ -56,7 +56,6 @@ void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
         palabra_adivinadas[0].intentos_actuales += 1; 
     }
     cout << "Progreso: " << palabra_adivinadas[cantidad_adivinadas].estado_actual << endl;
-    cout << "Intentos: " << palabra_adivinadas[0].intentos_actuales << endl;
 }
 
 
@@ -66,11 +65,11 @@ int adivinanza(Estructura* palabra_adivinadas, int* cantidad_adivinadas) {
     std::string estado_actual_revision = palabra_adivinadas[*cantidad_adivinadas].estado_actual;
     std::string palabra_adivinar_revision = palabra_adivinadas[*cantidad_adivinadas].palabra_adivinar;
 
-    cout << "Intentos actuales: " << intentos_actuales << endl;
+    cout << "Intentos fallidos: " << intentos_actuales << endl;
     cout << "Intentos máximos: " << intentos << endl;
         if (intentos == intentos_actuales ){
-            cout << "Se acabaron la cantidad de intentos. Lo siento, has perdido.\n";
             cout << "Palabras adivinadas: " << *cantidad_adivinadas << endl; 
+            cout << "Se acabaron la cantidad de intentos. Lo siento, has perdido.\n";
             *cantidad_adivinadas = 0;
             return false; 
         } else if (estado_actual_revision == palabra_adivinar_revision) {
