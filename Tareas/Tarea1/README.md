@@ -35,6 +35,9 @@ Luego, ya en la carpeta `html`, abre el archivo `index.html` con el siguiente co
 xdg-open index.html
 ```
 
+### Link DOXYGEN almacenado en netlify
+https://tarea1documentacionabsdasdas.netlify.app
+
 ## Instrucciones Detalladas de Uso
     
 El Makefile proporciona instrucciones claras para su adecuada utilización. Es crucial introducir el nombre del archivo de manera precisa, sin errores, para garantizar su correcta ejecución. Dado que se manejan cuatro archivos y los archivos con extensión `.hpp` no requieren compilación, se debe emplear el comando `P2` para compilar los archivos `main.cpp` y `Funciones.cpp`.
