@@ -8,13 +8,20 @@ Estructura iniciar_juego(std::string* diccionario_palabras, int num_palabras, in
     std::mt19937 gen(rd()); // Inicializar el motor de generación con la semilla anterior
     std::uniform_int_distribution<int> distrib(0, num_palabras - 1); // Es una clase que genera numeros aleatorios en un rango
     std::string palabra_seleccionada = diccionario_palabras[distrib(gen)]; // Selecciona la palabra, gen es la semilla anterior
-    cout << "Palabra seleccionada aleatoriamente: " << palabra_seleccionada << std::endl;
-    cout << palabra_seleccionada.length() << endl;
+    //cout << "Palabra seleccionada aleatoriamente: " << palabra_seleccionada << std::endl;
+    //cout << palabra_seleccionada.length() << endl;
     Estructura palabra_a_adiviniar;
     palabra_a_adiviniar.palabra_adivinar = palabra_seleccionada;
     palabra_a_adiviniar.estado_actual = std::string(palabra_seleccionada.length(), '_');
     palabra_a_adiviniar.intentos_maximos = intentos_dificultad;
-    cout << "Adivina la palabra: " << palabra_a_adiviniar.estado_actual << endl;
+    palabra_a_adiviniar.intentos_actuales = 0; 
+    
+
+    //Impresiones para el juego
+    //cout << "\n\n\n\n";
+    cout << "Bienvenido al juego del ahorcado!" << std::endl;
+    cout << "Tienes " << intentos_dificultad << " intentos para adivinar la palabra." << std::endl;
+    cout << "Palabra a adivinar: " << palabra_a_adiviniar.estado_actual << endl;
     return palabra_a_adiviniar;
 }
 
@@ -53,15 +60,29 @@ void verificar_letras(Estructura* palabra_adivinadas, int cantidad_adivinadas) {
 }
 
 
-int adivinanza(Estructura* palabra_adivinadas) {
+int adivinanza(Estructura* palabra_adivinadas, int* cantidad_adivinadas) {
     int intentos_actuales = palabra_adivinadas[0].intentos_actuales; 
     int intentos = palabra_adivinadas[0].intentos_maximos;
+    std::string estado_actual_revision = palabra_adivinadas[*cantidad_adivinadas].estado_actual;
+    std::string palabra_adivinar_revision = palabra_adivinadas[*cantidad_adivinadas].palabra_adivinar;
+
     cout << "Intentos actuales: " << intentos_actuales << endl;
     cout << "Intentos máximos: " << intentos << endl;
         if (intentos == intentos_actuales ){
+            cout << "Se acabaron la cantidad de intentos. Lo siento, has perdido.\n";
+            cout << "Palabras adivinadas: " << *cantidad_adivinadas << endl; 
+            *cantidad_adivinadas = 0;
             return false; 
-            cout << "Se acabaron la cantidad de intentos: " << endl; 
-        } else {
-            return true;
-        }
+        } else if (estado_actual_revision == palabra_adivinar_revision) {
+            cout << "¡Felicidades! Adivinaste la palabra: " << palabra_adivinar_revision << endl; 
+            *cantidad_adivinadas += 1; 
+            cout << "Palabras adivinadas: " << *cantidad_adivinadas << endl; 
+            return false;
+        } 
+
+        return true;
+}
+
+void imprimir_linea_decorativa() {
+    cout << "\n========================================\n";
 }

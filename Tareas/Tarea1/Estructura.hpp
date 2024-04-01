@@ -19,6 +19,4 @@ struct Estructura {
     int intentos_actuales;
 };
 
-extern std::string diccionario_palabras[100];
-extern int num_palabras;
 #endif

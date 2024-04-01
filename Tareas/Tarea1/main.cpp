@@ -38,25 +38,31 @@ int main() {
     int intentos_dificultad;
     int opcion; 
     int dificultad; 
-    bool Juego = true;
+    bool Juego;
 
     do {
-        cout << "\nMenu:\n";
-        cout << "\n1. Elegir la dificultad del juego\n";
-        cout << "\n2. Iniciar el juego\n";
-        cout << "\n3. Agregar palabra\n";
-        cout << "\n4. Salir\n";
-        cout << "\nIngrese su opcion: \n";
+        imprimir_linea_decorativa();
+        cout << "Menu Principal:\n";
+        imprimir_linea_decorativa();
+        cout << "1. Elegir la dificultad del juego\n";
+        cout << "2. Iniciar el juego\n";
+        cout << "3. Agregar palabra\n";
+        cout << "4. Salir\n";
+        imprimir_linea_decorativa();
+        cout << "Ingrese su opcion: ";
         cin  >> opcion;
 
         switch (opcion)
         {
         case DIFICULTAD:
-            cout << "\nSeleccione la dificultad:\n";
-            cout << "\n1. Facil\n";
-            cout << "\n2. Intermedio\n";
-            cout << "\n3. Dificil\n";
-            cout << "\nIngrese su opcion: \n";
+            imprimir_linea_decorativa();
+            cout << "Seleccione la dificultad:\n";
+            imprimir_linea_decorativa();
+            cout << "1. Facil (7 intentos)\n";
+            cout << "2. Intermedio (5 intentos)\n";
+            cout << "3. Dificil (3 intentos)\n";
+            imprimir_linea_decorativa();
+            cout << "Ingrese su opcion: ";
             cin  >> dificultad;
             switch (dificultad)
             {
@@ -70,18 +76,29 @@ int main() {
                     intentos_dificultad = 3;  
                 break;
             }
-            cout << "Dificultad antes de ingresar a la estructura: " << palabra_adivinadas[0].intentos_maximos << endl;
+            //cout << "Dificultad antes de ingresar a la estructura: " << palabra_adivinadas[0].intentos_maximos << endl;
+            cout << "Dificultad establecida. ¡Prepárate para el reto!\n";
             break;
         case INICIAR:
+            Juego = true;
             if (intentos_dificultad != 0){
-                cout << "Dificultad prueba1: " << palabra_adivinadas[0].intentos_maximos << endl;
+                //cout << "Dificultad prueba1: " << palabra_adivinadas[0].intentos_maximos << endl;
+                cout << "Cantidad prueba1: " << cantidad_adivinadas << endl;
+                cout << "Intentos prueba1: " << palabra_adivinadas[0].intentos_actuales << endl;
                 palabra_adivinadas[cantidad_adivinadas] = iniciar_juego(diccionario_palabras, num_palabras, intentos_dificultad);
-                cout << "Dificultad prueba3: " << palabra_adivinadas[0].intentos_maximos << endl;
+                //cout << "Dificultad prueba3: " << palabra_adivinadas[0].intentos_maximos << endl;
+                cout << "Palabra a adivinar: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; 
+                cout << "Cantidad prueba2: " << cantidad_adivinadas << endl;
+                cout << "Intentos prueba2: " << palabra_adivinadas[0].intentos_actuales << endl;
                 while (Juego == true) {
                     verificar_letras(palabra_adivinadas, cantidad_adivinadas);
-                    cout << "Dificultad prueba4: " << palabra_adivinadas[0].intentos_maximos << endl;
-                    Juego = adivinanza(palabra_adivinadas);
-                    cout << "Dificultad prueba5: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    //cout << "Dificultad prueba4: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    cout << "Cantidad prueba3: " << cantidad_adivinadas << endl;
+                    cout << "Intentos prueba3: " << palabra_adivinadas[0].intentos_actuales << endl;
+                    Juego = adivinanza(palabra_adivinadas, &cantidad_adivinadas);
+                    //cout << "Dificultad prueba5: " << palabra_adivinadas[0].intentos_maximos << endl;
+                    cout << "Cantidad prueba4: " << cantidad_adivinadas << endl;
+                    cout << "Intentos prueba4: " << palabra_adivinadas[0].intentos_actuales << endl;
                 }
             } else {
                 cout << "No se ha seleccionado ninguna dificultad.";
@@ -95,16 +112,21 @@ int main() {
             cout << "Palabra a adivinar 2: " << palabra_adivinadas[1].palabra_adivinar << endl;
             cout << "Palabra a adivinar 3: " << palabra_adivinadas[2].palabra_adivinar << endl;
             cout << "Palabra a adivinar 4: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; */
-            cantidad_adivinadas++;
+            //cantidad_adivinadas++;
             //cout << cantidad_adivinadas;
             break;
         case AGREGAR_PALABRA:
             agregar_palabra(diccionario_palabras, &num_palabras);
             break; 
         case SALIR:
+            imprimir_linea_decorativa();
+            cout << "Gracias por jugar. ¡Hasta la próxima!\n";
+            imprimir_linea_decorativa();
             break;
         default:
+            imprimir_linea_decorativa();
             cout << "Opcion no valida. Intente de nuevo...\n";
+            imprimir_linea_decorativa();
             break; 
         }
     } while (opcion != SALIR); 
