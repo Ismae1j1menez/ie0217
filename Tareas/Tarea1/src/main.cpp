@@ -1,4 +1,13 @@
-// Se usa el UpperCamelCase para nombrar estructuras y enum
+/**
+ * @file main.cpp
+ * @brief Programa principal para el juego del ahorcado.
+ * 
+ * Este archivo contiene el flujo principal del juego del ahorcado, incluyendo la configuración inicial,
+ * la ejecución del juego, y la interacción con el usuario. Se utilizan diversas funciones definidas en
+ * otros archivos para manejar la lógica del juego, la manipulación de palabras, y la interacción con el usuario.
+ */
+
+// Se usa el UpperCamelCase para nombrar estructuras y enums
 // Se usa snake_case para nombrar variables, funciones y atributos
 // Para los valores del enum se usa la UPPER_CASE
 #include <iostream>
@@ -19,6 +28,10 @@ std::string diccionario_palabras[MAX_PALABRAS] = {
 };
 int num_palabras = 31;
 
+/**
+ * @enum Opciones
+ * @brief Enumeración para las opciones del menú principal.
+ */
 enum Opciones {
     DIFICULTAD = 1,
     INICIAR,
@@ -27,12 +40,25 @@ enum Opciones {
     SALIR
 };
 
+/**
+ * @enum Dificultad
+ * @brief Enumeración para los niveles de dificultad del juego.
+ */
 enum Dificultad {
     FACIL = 1,
     INTERMEDIO, 
     DIFICIL
 };
 
+/**
+ * @brief Función principal que ejecuta el juego del ahorcado.
+ * 
+ * Maneja la lógica principal del juego, incluyendo la presentación del menú, la selección de opciones,
+ * y el ciclo principal del juego. Permite al usuario elegir la dificultad, iniciar el juego, agregar
+ * palabras al diccionario, y ver las palabras disponibles.
+ * 
+ * @return int El código de salida del programa.
+ */
 int main() {
     Estructura palabra_adivinadas[MAX_PALABRAS];
     int cantidad_adivinadas = 0;
@@ -79,45 +105,23 @@ int main() {
                     intentos_dificultad = 3;  
                 break;
             }
-            //cout << "Dificultad antes de ingresar a la estructura: " << palabra_adivinadas[0].intentos_maximos << endl;
             cout << "Dificultad establecida. ¡Prepárate para el reto!\n";
             break;
         case INICIAR:
             Juego = true;
             if (intentos_dificultad != 0){
-                //cout << "Dificultad prueba1: " << palabra_adivinadas[0].intentos_maximos << endl;
-                //cout << "Cantidad prueba1: " << cantidad_adivinadas << endl;
-                //cout << "Intentos prueba1: " << palabra_adivinadas[0].intentos_actuales << endl;
+                // Se asigna a la Estructura las configuraciones inciales del juegos
                 palabra_adivinadas[cantidad_adivinadas] = iniciar_juego(diccionario_palabras, num_palabras, intentos_dificultad);
-                //cout << "Dificultad prueba3: " << palabra_adivinadas[0].intentos_maximos << endl;
-                cout << "Palabra a adivinar: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; 
-                //cout << "Cantidad prueba2: " << cantidad_adivinadas << endl;
-                //cout << "Intentos prueba2: " << palabra_adivinadas[0].intentos_actuales << endl;
+                //cout << "Palabra a adivinar: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; 
+                // Bucle incial del juego, se mantiene hasta que se adivine o se acaben los intenos
                 while (Juego == true) {
                     verificar_letras(palabra_adivinadas, cantidad_adivinadas);
-                    //cout << "Dificultad prueba4: " << palabra_adivinadas[0].intentos_maximos << endl;
-                    //cout << "Cantidad prueba3: " << cantidad_adivinadas << endl;
-                    //cout << "Intentos prueba3: " << palabra_adivinadas[0].intentos_actuales << endl;
                     Juego = adivinanza(palabra_adivinadas, &cantidad_adivinadas);
-                    //cout << "Dificultad prueba5: " << palabra_adivinadas[0].intentos_maximos << endl;
-                    //cout << "Cantidad prueba4: " << cantidad_adivinadas << endl;
-                    //cout << "Intentos prueba4: " << palabra_adivinadas[0].intentos_actuales << endl;
                     imprimir_linea_decorativa();
                 }
             } else {
                 cout << "No se ha seleccionado ninguna dificultad.";
             }
-            /*cout << "Actual verificacion: " << palabra_adivinadas[0].estado_actual << endl; 
-            cout << "Actual verificacion: " << palabra_adivinadas[1].estado_actual << endl;
-            cout << "Actual verificacion: " << palabra_adivinadas[2].estado_actual << endl;
-            cout << "Palabra diccionario: " << diccionario_palabras[num_palabras -1] << endl; 
-            cout << "Palabra diccionario: " << diccionario_palabras[31] << endl; 
-            cout << "Palabra a adivinar 1: " << palabra_adivinadas[0].palabra_adivinar << endl;
-            cout << "Palabra a adivinar 2: " << palabra_adivinadas[1].palabra_adivinar << endl;
-            cout << "Palabra a adivinar 3: " << palabra_adivinadas[2].palabra_adivinar << endl;
-            cout << "Palabra a adivinar 4: " << palabra_adivinadas[cantidad_adivinadas].palabra_adivinar << endl; */
-            //cantidad_adivinadas++;
-            //cout << cantidad_adivinadas;
             break;
         case AGREGAR_PALABRA:
             agregar_palabra(diccionario_palabras, &num_palabras);
