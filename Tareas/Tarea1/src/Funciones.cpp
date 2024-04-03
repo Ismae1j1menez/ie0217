@@ -123,8 +123,9 @@ int adivinanza(Estructura* palabra_adivinadas, int* cantidad_adivinadas) {
     std::string estado_actual_revision = palabra_adivinadas[*cantidad_adivinadas].estado_actual;
     std::string palabra_adivinar_revision = palabra_adivinadas[*cantidad_adivinadas].palabra_adivinar;
 
-    std::cout << "Intentos fallidos: " << intentos_actuales << std::endl;
     std::cout << "Intentos máximos: " << intentos << std::endl;
+    std::cout << "Intentos fallidos: " << intentos_actuales << std::endl;
+    std::cout << "Intentos disponibles: " << intentos - intentos_actuales << std::endl;
     // Revisa si los fallos son iguales a los intentos máximos
     if (intentos == intentos_actuales) {
         std::string intento_palabra;
