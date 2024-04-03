@@ -17,6 +17,7 @@ class WingedAnimal {
         }
 };
 
+// Tiene acceso a ambas clases
 class Bat: public Mamma1, public WingedAnimal {};
 
 int main() {

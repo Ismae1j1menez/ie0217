@@ -6,11 +6,13 @@ class Animal {
         void info() { cout << "I am an animal." << endl;}
 };
 
+// Esta hereda de animal
 class Dog : public Animal {
     public:
         void bark() { cout << "I am a Dog. Woof Woof." << endl; }
 };
 
+// Esta se hereda de animal también
 class Cat : public Animal {
     public:
         void meow() { cout << "I am a Cat. Meow." << endl; }
