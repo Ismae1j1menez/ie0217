@@ -29,9 +29,13 @@ bool Planeta::agregarPaisAContinente(const Pais& nuevoPais, const std::string& n
     return false;
 }
 
-void Planeta::imprimir_info() {
+void Planeta::imprimir_info_detallada() {
+    cout << "Planeta Tierra\n";
+    cout << "--------------\n";
     for (int i = 0; i < numContinentes; i++) {
-        continentes[i].imprimirPaises();
+        cout << "Continente: " << continentes[i].getNombre() << "\n";
+        continentes[i].imprimir_info_detallada();
+        cout << "\n";
     }
 }
 

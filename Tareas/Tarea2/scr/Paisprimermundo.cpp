@@ -1,4 +1,5 @@
 #include "Paisprimermundo.hpp"
+using namespace std; 
 
 PaisPrimerMundo::PaisPrimerMundo() : Pais(), tieneTecnologia5G(false), tieneCentroInvestigacion(false) {}
 
@@ -20,4 +21,13 @@ void PaisPrimerMundo::setCentroInvestigacion(bool tieneCentroInvestigacion) {
 
 bool PaisPrimerMundo::getCentroInvestigacion() const {
     return tieneCentroInvestigacion;
+}
+
+void PaisPrimerMundo::imprimir_info_detallada() {
+    cout << "País de Primer Mundo: " << getNombre() << "\n";
+    cout << "Identificador: " << getID() << "\n";
+    cout << "Población: " << getPoblacion() << "\n";
+    cout << "Tecnología 5G: " << (getTecnologia5G() ? "Sí" : "No") << "\n";
+    cout << "Centro de Investigación: " << (getCentroInvestigacion() ? "Sí" : "No") << "\n";
+    cout << "PIB: " << generarPIB() << "\n";
 }

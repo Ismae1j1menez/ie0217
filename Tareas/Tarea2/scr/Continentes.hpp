@@ -25,7 +25,7 @@ public:
     bool agregarPais(const Pais& nuevoPais);
     bool agregarPaisPrimerMundo(const PaisPrimerMundo& nuevoPaisPrimerMundo);
     bool agregarPaisEnDesarrollo(const PaisEnDesarrollo& nuevoPaisEnDesarrollo);
-    void imprimirPaises();
+    void imprimir_info_detallada();
     std::string getNombre();
 };
 

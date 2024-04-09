@@ -17,7 +17,7 @@ public:
     Planeta();
     bool agregarContinente(const Continente& nuevoContinente);
     bool agregarPaisAContinente(const Pais& nuevoPais, const std::string& nombreContinente);
-    void imprimir_info();
+    void imprimir_info_detallada();
     bool agregarPaisPrimerMundoAContinente(const PaisPrimerMundo& nuevoPaisPrimerMundo, const std::string& nombreContinente);
     bool agregarPaisEnDesarrolloAContinente(const PaisEnDesarrollo& nuevoPaisEnDesarrollo, const std::string& nombreContinente);
 };

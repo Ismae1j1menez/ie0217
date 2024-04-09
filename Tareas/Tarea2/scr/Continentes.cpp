@@ -33,14 +33,11 @@ bool Continente::agregarPaisEnDesarrollo(const PaisEnDesarrollo& nuevoPaisEnDesa
     return false;
 }
 
-void Continente::imprimirPaises(){
-    std::cout << "Continente: " << nombre << "\n";
-    std::cout << "Países de Primer Mundo:\n";
+void Continente::imprimir_info_detallada() {
     for (int i = 0; i < numPaisesPrimerMundo; i++) {
-        std::cout << "- " << paisesPrimerMundo[i].getNombre() << "\n";
+        paisesPrimerMundo[i].imprimir_info_detallada(); 
     }
-    std::cout << "Países en Desarrollo:\n";
     for (int i = 0; i < numPaisesEnDesarrollo; i++) {
-        std::cout << "- " << paisesEnDesarrollo[i].getNombre() << "\n";
+        paisesEnDesarrollo[i].imprimir_info_detallada(); 
     }
 }

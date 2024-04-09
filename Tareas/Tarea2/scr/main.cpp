@@ -51,7 +51,7 @@ int main() {
         switch (opcion)
         {
         case PRINT_INFO:
-            miPlaneta.imprimir_info();
+            miPlaneta.imprimir_info_detallada();
             break;
         case COMPARE_CONTRIES:
             /* code */

@@ -18,6 +18,8 @@ public:
     void setCentroInvestigacion(bool tieneCentroInvestigacion);
     bool getCentroInvestigacion() const;
 
+    void imprimir_info_detallada();
+
 };
 
 #endif
