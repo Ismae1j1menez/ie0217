@@ -57,27 +57,42 @@ int main() {
             /* code */
             break;
         case ADD_CONTRIE: {
+            int tipoPais;
+            unsigned long identificador;
+            unsigned int poblacion;
+            bool tieneTecnologia5G, tieneCentroInvestigacion;
+            
             imprimir_linea_decorativa();
             cout << "Ingrese el nombre del nuevo país: ";
-            cin >> nombrePais;
-            Pais nuevoPais(nombrePais);  
+            cin.ignore();
+            getline(cin, nombrePais);
             
+            imprimir_linea_decorativa();
+            cout << "Ingrese el identificador del nuevo país: ";
+            cin >> identificador;
+            
+            imprimir_linea_decorativa();
+            cout << "Ingrese la población del nuevo país: ";
+            cin >> poblacion;
+            
+            imprimir_linea_decorativa();
+            cout << "Es el país de primer mundo o en desarrollo? (1 para primer mundo, 2 para en desarrollo): ";
+            cin >> tipoPais;
+            
+            imprimir_linea_decorativa();
+            cout << "Seleccione el continente al que pertenece tu país:\n";
+            imprimir_linea_decorativa();
+            cout << "1. América.\n";
+            cout << "2. Europa.\n";
+            cout << "3. Oceanía.\n";
+            cout << "4. Asia.\n";
+            cout << "5. África.\n";
+            cout << "6. Salir.\n";
+            imprimir_linea_decorativa();
+            cout << "Ingrese su opción: ";
+            cin >> selec_continent;
 
-            do {
-                imprimir_linea_decorativa();
-                cout << "Seleccione el continente al que pertenece tu país:\n";
-                imprimir_linea_decorativa();
-                cout << "1. América.\n";
-                cout << "2. Europa.\n";
-                cout << "3. Oceanía.\n";
-                cout << "4. Asia.\n";
-                cout << "5. África.\n";
-                cout << "6. Salir.\n";
-                imprimir_linea_decorativa();
-                cout << "Ingrese su opción: ";
-                cin >> selec_continent;
-
-                switch (selec_continent) {
+            switch (selec_continent) {
                 case AMERICA:
                     nombreContinente = "América";
                     break;
@@ -94,18 +109,29 @@ int main() {
                     nombreContinente = "África";
                     break;
                 case EXIT_CONTINENT:
-                    continue;  // Sale del bucle interno directamente
+                    break;
                 default:
                     imprimir_linea_decorativa();
                     cout << "Opción no válida. Intente de nuevo...\n";
                     imprimir_linea_decorativa();
                     continue;
+            }
+
+            if (selec_continent != EXIT_CONTINENT && !nombreContinente.empty()) {
+                if (tipoPais == 1) {
+                    cout << "Tiene tecnología 5G? (1 para sí, 0 para no): ";
+                    cin >> tieneTecnologia5G;
+                    
+                    cout << "Tiene centro de investigación? (1 para sí, 0 para no): ";
+                    cin >> tieneCentroInvestigacion;
+                    
+                    PaisPrimerMundo nuevoPaisPrimerMundo(nombrePais, identificador, poblacion, tieneTecnologia5G, tieneCentroInvestigacion);
+                    miPlaneta.agregarPaisPrimerMundoAContinente(nuevoPaisPrimerMundo, nombreContinente);
+                } else if (tipoPais == 2) {
+                    PaisEnDesarrollo nuevoPaisEnDesarrollo(nombrePais, identificador, poblacion);
+                    miPlaneta.agregarPaisEnDesarrolloAContinente(nuevoPaisEnDesarrollo, nombreContinente);
                 }
-                if (!nombreContinente.empty()) {
-                    miPlaneta.agregarPaisAContinente(nuevoPais, nombreContinente);
-                    break;  // Sale del bucle después de agregar el país
-                }
-            } while (true);
+            }
             break;
         }
         case DELETE_CONTRIE:
