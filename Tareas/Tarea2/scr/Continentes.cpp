@@ -56,3 +56,31 @@ Pais* Continente::buscarPaisPorNombre(const std::string& nombrePais) {
     }
     return nullptr; 
 }
+
+bool Continente::eliminarPais(const std::string& nombrePais) {
+    cout << "Debug2: Entrando a Continente::eliminarPais" << endl; 
+
+    for (int i = 0; i < numPaisesPrimerMundo; ++i) {
+        cout << "Debug1: Buscando en paisesPrimerMundo " << paisesPrimerMundo[i].getNombre() << endl;
+        if (paisesPrimerMundo[i].getNombre() == nombrePais) {
+            for (int j = i; j < numPaisesPrimerMundo - 1; ++j) {
+                paisesPrimerMundo[j] = paisesPrimerMundo[j + 1];
+            }
+            numPaisesPrimerMundo--; 
+            return true; 
+        }
+    }
+
+    for (int i = 0; i < numPaisesEnDesarrollo; ++i) {
+        cout << "Debug1: Buscando en paisesEnDesarrollo " << paisesEnDesarrollo[i].getNombre() << endl;
+        if (paisesEnDesarrollo[i].getNombre() == nombrePais) {
+            for (int j = i; j < numPaisesEnDesarrollo - 1; ++j) {
+                paisesEnDesarrollo[j] = paisesEnDesarrollo[j + 1];
+            }
+            numPaisesEnDesarrollo--; 
+            return true; 
+        }
+    }
+
+    return false; 
+}

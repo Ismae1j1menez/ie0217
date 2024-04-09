@@ -66,3 +66,13 @@ Pais* Planeta::buscarPaisPorNombre(const std::string& nombrePais) {
     }
     return nullptr; 
 }
+
+bool Planeta::eliminarPais(const std::string& nombrePais) {
+    cout << "Debug0: entrando a pais: " << endl; 
+    for (int i = 0; i < numContinentes; ++i) {
+        if (continentes[i].eliminarPais(nombrePais)) {
+            return true; 
+        }
+    }
+    return false;
+}

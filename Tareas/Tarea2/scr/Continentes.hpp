@@ -28,6 +28,7 @@ public:
     void imprimir_info_detallada();
     std::string getNombre();
     Pais* buscarPaisPorNombre(const std::string& nombrePais);
+    bool eliminarPais(const std::string& nombrePais);
 };
 
 #endif

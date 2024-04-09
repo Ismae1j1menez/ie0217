@@ -154,44 +154,18 @@ int main() {
             }
             break;
         }
-        case DELETE_CONTRIE:
-            do {
-                imprimir_linea_decorativa();
-                cout << "Seleccione el continente al que pertenece tu país:\n";
-                imprimir_linea_decorativa();
-                cout << "1. América.\n";
-                cout << "2. Europa.\n";
-                cout << "3. Africa.\n";
-                cout << "4. Oceanía.\n";
-                cout << "5. Asia.\n";
-                imprimir_linea_decorativa();
-                cout << "Ingrese su opcion: ";
-                cin  >> selec_continent;
-
-                switch (selec_continent)
-                {
-                case AMERICA:
-                    /* code */
-                    break;
-                case EUROPA:
-                    /* code */
-                    break;
-                case OCEANIA:
-                    /* code */
-                    break;
-                case ASIA:
-                    /* code */
-                    break;
-                case AFRICA:
-                    /* code */
-                    break;
-                default:
-                imprimir_linea_decorativa();
-                cout << "Opcion no valida. Intente de nuevo...\n";
-                imprimir_linea_decorativa();
-                break; 
-                }
-            } while (selec_continent != EXIT_CONTINENT);
+        case DELETE_CONTRIE: {
+            std::string DeletePais1;
+            cout << "Ingrese el nombre del primer país para comparar: ";
+            cin.ignore();
+            getline(cin, DeletePais1);
+                bool eliminado = miPlaneta.eliminarPais(DeletePais1);
+            if (eliminado) {
+                cout << "El país ha sido eliminado exitosamente.\n";
+            } else {
+                cout << "El país no pudo ser encontrado o eliminado.\n";
+            }
+            }
             break;
         case EXIT:
             cout << "Saliendo del programa..." << endl;

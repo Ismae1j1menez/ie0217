@@ -6,7 +6,7 @@
 #include "Paisendesarrollo.hpp"
 #include <iostream>
 using namespace std; 
-#define MAX_CONTINENTES 4
+#define MAX_CONTINENTES 5
 
 class Planeta {
 private:
@@ -21,5 +21,6 @@ public:
     bool agregarPaisPrimerMundoAContinente(const PaisPrimerMundo& nuevoPaisPrimerMundo, const std::string& nombreContinente);
     bool agregarPaisEnDesarrolloAContinente(const PaisEnDesarrollo& nuevoPaisEnDesarrollo, const std::string& nombreContinente);
     Pais* buscarPaisPorNombre(const std::string& nombrePais);
+    bool eliminarPais(const std::string& nombrePais);
 };
 #endif
