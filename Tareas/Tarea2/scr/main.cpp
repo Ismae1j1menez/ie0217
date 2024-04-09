@@ -68,16 +68,18 @@ int main() {
             getline(cin, nombrePais);
             
             imprimir_linea_decorativa();
-            cout << "Ingrese el identificador del nuevo país: ";
-            cin >> identificador;
+            identificador = generar_numero_aleatorio_1_a_300();
             
             imprimir_linea_decorativa();
             cout << "Ingrese la población del nuevo país: ";
             cin >> poblacion;
             
             imprimir_linea_decorativa();
-            cout << "Es el país de primer mundo o en desarrollo? (1 para primer mundo, 2 para en desarrollo): ";
-            cin >> tipoPais;
+            if (es_primo(identificador) == 1) {
+                tipoPais = 1;
+            } else {
+                tipoPais = 2; 
+            }
             
             imprimir_linea_decorativa();
             cout << "Seleccione el continente al que pertenece tu país:\n";
