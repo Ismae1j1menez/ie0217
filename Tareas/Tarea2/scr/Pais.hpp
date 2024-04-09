@@ -23,6 +23,7 @@ public:
     unsigned int getPoblacion() const;
     unsigned long getID() const;
     virtual double generarPIB(); 
+    bool operator==(const Pais& otro) const;
 };
 
 #endif

@@ -20,5 +20,6 @@ public:
     void imprimir_info_detallada();
     bool agregarPaisPrimerMundoAContinente(const PaisPrimerMundo& nuevoPaisPrimerMundo, const std::string& nombreContinente);
     bool agregarPaisEnDesarrolloAContinente(const PaisEnDesarrollo& nuevoPaisEnDesarrollo, const std::string& nombreContinente);
+    Pais* buscarPaisPorNombre(const std::string& nombrePais);
 };
 #endif

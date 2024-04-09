@@ -53,9 +53,27 @@ int main() {
         case PRINT_INFO:
             miPlaneta.imprimir_info_detallada();
             break;
-        case COMPARE_CONTRIES:
-            /* code */
-            break;
+        case COMPARE_CONTRIES: {
+            std::string nombrePais1, nombrePais2;
+            cout << "Ingrese el nombre del primer país para comparar: ";
+            cin.ignore();
+            getline(cin, nombrePais1);
+            cout << "Ingrese el nombre del segundo país para comparar: ";
+            getline(cin, nombrePais2);
+            Pais* pais1 = miPlaneta.buscarPaisPorNombre(nombrePais1);
+            Pais* pais2 = miPlaneta.buscarPaisPorNombre(nombrePais2);
+
+            if (!pais1 || !pais2) {
+                cout << "Uno o ambos países no se pudieron encontrar.\n";
+            } else {
+                if (*pais1 == *pais2) {
+                    cout << "Los países son 'iguales' según el criterio de comparación de números primos.\n";
+                } else {
+                    cout << "Los países no son 'iguales'.\n";
+                }
+            }
+            }
+            break; 
         case ADD_CONTRIE: {
             int tipoPais;
             unsigned long identificador;

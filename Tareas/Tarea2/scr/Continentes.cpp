@@ -1,5 +1,6 @@
 #include "Continentes.hpp"
 #include <iostream>
+using namespace std; 
 
 Continente::Continente() : numPaises(0), nombre("") {}
 
@@ -40,4 +41,18 @@ void Continente::imprimir_info_detallada() {
     for (int i = 0; i < numPaisesEnDesarrollo; i++) {
         paisesEnDesarrollo[i].imprimir_info_detallada(); 
     }
+}
+
+Pais* Continente::buscarPaisPorNombre(const std::string& nombrePais) {
+    for (size_t i = 0; i < numPaisesPrimerMundo; ++i) {
+        if (paisesPrimerMundo[i].getNombre() == nombrePais) { 
+            return &paisesPrimerMundo[i]; 
+        }
+    }
+    for (size_t j = 0; j < numPaisesEnDesarrollo; ++j) {
+        if (paisesEnDesarrollo[j].getNombre() == nombrePais) { 
+            return &paisesEnDesarrollo[j];
+        }
+    }
+    return nullptr; 
 }

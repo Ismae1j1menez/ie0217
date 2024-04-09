@@ -56,3 +56,13 @@ bool Planeta::agregarPaisEnDesarrolloAContinente(const PaisEnDesarrollo& nuevoPa
     }
     return false;
 }
+
+Pais* Planeta::buscarPaisPorNombre(const std::string& nombrePais) {
+    for (int i = 0; i < numContinentes; i++) {
+        Pais* encontrado = continentes[i].buscarPaisPorNombre(nombrePais);
+        if (encontrado != nullptr) {
+            return encontrado;
+        }
+    }
+    return nullptr; 
+}

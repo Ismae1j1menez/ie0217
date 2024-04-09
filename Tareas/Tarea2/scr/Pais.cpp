@@ -1,4 +1,5 @@
 #include "Pais.hpp"
+#include "Funciones.hpp"
 #include <cstdlib> 
 #include <ctime>   
 
@@ -32,4 +33,10 @@ unsigned long Pais::getID() const {
 double Pais::generarPIB() {
     double pib = (rand() % 1000000 + 1) * 1e6;
     return pib;
+}
+
+bool Pais::operator==(const Pais& otro) const {
+    bool esPrimoEste = es_primo(this->identificador);
+    bool esPrimoOtro = es_primo(otro.identificador);
+    return esPrimoEste == esPrimoOtro;
 }

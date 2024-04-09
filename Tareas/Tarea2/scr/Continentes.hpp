@@ -27,6 +27,7 @@ public:
     bool agregarPaisEnDesarrollo(const PaisEnDesarrollo& nuevoPaisEnDesarrollo);
     void imprimir_info_detallada();
     std::string getNombre();
+    Pais* buscarPaisPorNombre(const std::string& nombrePais);
 };
 
 #endif
