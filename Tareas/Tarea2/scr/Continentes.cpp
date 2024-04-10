@@ -97,10 +97,8 @@ Pais* Continente::buscarPaisPorNombre(const std::string& nombrePais) {
 // Metodo para eliminar el pais, busca el indice del objeto y le cae con el que esta a la derecha
 // por consecuencia el pais desaparece
 bool Continente::eliminarPais(const std::string& nombrePais) {
-    cout << "Debug2: Entrando a Continente::eliminarPais" << endl; 
 
     for (int i = 0; i < numPaisesPrimerMundo; ++i) {
-        cout << "Debug1: Buscando en paisesPrimerMundo " << paisesPrimerMundo[i].getNombre() << endl;
         if (paisesPrimerMundo[i].getNombre() == nombrePais) {
             // Desplazar elementos para eliminar el país
             for (int j = i; j < numPaisesPrimerMundo - 1; ++j) {
@@ -112,7 +110,6 @@ bool Continente::eliminarPais(const std::string& nombrePais) {
     }
 
     for (int i = 0; i < numPaisesEnDesarrollo; ++i) {
-        cout << "Debug1: Buscando en paisesEnDesarrollo " << paisesEnDesarrollo[i].getNombre() << endl;
         if (paisesEnDesarrollo[i].getNombre() == nombrePais) {
             // Desplazar elementos para eliminar el país
             for (int j = i; j < numPaisesEnDesarrollo - 1; ++j) {

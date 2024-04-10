@@ -98,8 +98,7 @@ Pais* Planeta::buscarPaisPorNombre(const std::string& nombrePais) {
 }
 
 // Metodo que itera sobre el el array de continentes para luego llamar al metodo de eliminarPais
-bool Planeta::eliminarPais(const std::string& nombrePais) {
-    cout << "Debug0: entrando a pais: " << endl; 
+bool Planeta::eliminarPais(const std::string& nombrePais) { 
     for (int i = 0; i < numContinentes; ++i) {
         if (continentes[i].eliminarPais(nombrePais)) {
             return true; 

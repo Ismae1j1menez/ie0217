@@ -32,6 +32,7 @@
 #define PAISPRIMERMUNDO_HPP
 
 #include "Pais.hpp"
+#include <random>
 
 
 /**
@@ -45,24 +46,23 @@ class PaisPrimerMundo : public Pais {
 private:
     bool tieneTecnologia5G; ///< Indica si el país tiene tecnología 5G.
     bool tieneCentroInvestigacion; ///< Indica si el país tiene un centro de investigación.
-    bool tieneAeropuertoMasAviones;
+    bool tieneAeropuertoMasAviones; ///< Indica si el país tiene un centro de aeropuerto y por consecuencia pasa el avión.
+    unsigned int poblacionConTrabajo; ///< Indica si el país tiene población con trabajo
+    unsigned int poblacionSinTrabajo; ///< Indica si el país tiene población sin trabajo
+
+    void calcularEmpleo(); 
+
 public:
     PaisPrimerMundo();
     PaisPrimerMundo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneTecnologia5G, bool tieneCentroInvestigacion, bool tieneAeropuertoMasAviones);
     
     void setTecnologia5G(bool tieneTecnologia5G);
     bool getTecnologia5G() const; 
-    
     void setCentroInvestigacion(bool tieneCentroInvestigacion);
     bool getCentroInvestigacion() const;
-
-
     void setAeropuertoMasAviones(bool tieneAeropuertoMasAviones);
     bool getAeropuertoMasAviones() const;
-
-
     void imprimir_info_detallada();
-
 };
 
 #endif
