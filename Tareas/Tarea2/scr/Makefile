@@ -3,7 +3,7 @@
 # Ejemplo:
 #   make P1 programa
 #
-# Para compilar y ejecutar programas que dependen de dos archivos fuente, usa:
+# Para compilar y ejecutar programas que dependen de dos  o más archivos fuente, usa:
 #   make P2 archivo1 archivo2
 #
 # Para limpiar los archivos ejecutables y otros archivos generados, ejecuta:
@@ -25,7 +25,7 @@ P1:
 	$(CC) -o $(filter-out $@,$(MAKECMDGOALS)).exe $(filter-out $@,$(MAKECMDGOALS)).cpp
 	./$(filter-out $@,$(MAKECMDGOALS)).exe
 
-# Objetivo de compilar y ejecutar dos archivos fuente. Genera un ejecutable con el nombre del primer archivo.
+# Objetivo que compila y ejecutar dos o más archivos fuente. Genera un ejecutable con el nombre del objetivo.
 P2:
 	$(CC) -o $(firstword $(MAKECMDGOALS)).exe $(addsuffix .cpp, $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS)))
 	./$(firstword $(MAKECMDGOALS)).exe

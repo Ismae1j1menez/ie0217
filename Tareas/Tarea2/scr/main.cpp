@@ -1,3 +1,34 @@
+//MIT License
+//
+//Copyright (c) 2024 Ismael Jiménez Carballo
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
+/**
+ * @file main.cpp
+ * @brief Programa principal para la gestión de países en un planeta.
+ *
+ * Este archivo contiene el menú principal del programa y las operaciones
+ * relacionadas con la gestión de países, tales como imprimir información,
+ * comparar países, agregar o eliminar un país.
+ */
+
 // Se usa el UpperCamelCase para nombrar estructuras, enums y clases
 // Se usa snake_case para nombrar variables, funciones y atributos
 // Para los valores del enum se usa la UPPER_CASE
@@ -11,23 +42,37 @@
 
 using namespace std; 
 
+
+/**
+ * @enum Opciones
+ * @brief Define las opciones disponibles en el menú principal.
+ */
 enum Opciones {
-    PRINT_INFO = 1,
-    COMPARE_CONTRIES,
-    ADD_CONTRIE,
-    DELETE_CONTRIE,
-    EXIT
+    PRINT_INFO = 1,     ///< Imprime la información de todos los países.
+    COMPARE_COUNTRIES,  ///< Compara dos países.
+    ADD_COUNTRY,        ///< Agrega un nuevo país.
+    DELETE_COUNTRY,     ///< Elimina un país existente.
+    EXIT                ///< Salida del programa.
 };
 
+/**
+ * @enum SelecContinente
+ * @brief Define los continentes disponibles para asociar a los países.
+ */
 enum SelecContinente {
-    AMERICA = 1,
-    EUROPA, 
-    OCEANIA, 
-    ASIA, 
-    AFRICA,
-    EXIT_CONTINENT
+    AMERICA = 1,  ///< Continente americano.
+    EUROPA,       ///< Continente europeo.
+    OCEANIA,      ///< Continente de Oceanía.
+    ASIA,         ///< Continente asiático.
+    AFRICA,       ///< Continente africano.
+    EXIT_CONTINENT ///< Salida del selector de continente.
 };
 
+/**
+ * @brief Punto de entrada principal para el programa.
+ *
+ * @return int Estado de salida del programa.
+ */
 int main() {
     int opcion; 
     int selec_continent;
@@ -53,7 +98,7 @@ int main() {
         case PRINT_INFO:
             miPlaneta.imprimir_info_detallada();
             break;
-        case COMPARE_CONTRIES: {
+        case COMPARE_COUNTRIES: {
             std::string nombrePais1, nombrePais2;
             cout << "Ingrese el nombre del primer país para comparar: ";
             // Limpia el registro temporal (Buffer de entrada)
@@ -78,7 +123,7 @@ int main() {
             }
             }
             break; 
-        case ADD_CONTRIE: {
+        case ADD_COUNTRY: {
             int tipoPais;
             unsigned long identificador;
             unsigned int poblacion;
@@ -164,7 +209,7 @@ int main() {
             }
             break;
         }
-        case DELETE_CONTRIE: {
+        case DELETE_COUNTRY: {
             std::string DeletePais1;
             cout << "Ingrese el nombre del primer país para comparar: ";
             cin.ignore();
