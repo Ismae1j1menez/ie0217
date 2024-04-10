@@ -46,7 +46,7 @@ https://tarea2documentation.netlify.app/
 
 ## Instrucciones Detalladas de Uso
     
-El Makefile proporciona instrucciones claras para su adecuada utilización. Es crucial introducir el nombre del archivo de manera precisa, sin errores, para garantizar su correcta ejecución. Dado que se manejan cuatro archivos y los archivos con extensión `.hpp` no requieren compilación, se debe emplear el comando `P2` para compilar los archivos `main.cpp` y `Funciones.cpp`.
+El Makefile proporciona instrucciones claras para su adecuada utilización. Es crucial introducir el nombre del archivo de manera precisa, sin errores, para garantizar su correcta ejecución. Dado que se manejan cuatro archivos y los archivos con extensión `.hpp` no requieren compilación, se debe emplear el comando `P2` para compilar los archivos.
 
 ## Instrucciones para la aplicación
 Al ejecutar el archivo resultante de la compilación, se presenta un menú inicial con cinco opciones. Se recomienda ingresar únicamente números, ya que el programa espera un valor entero y puede entrar en un bucle si recibe un carácter o una cadena de texto. Esto aplica tanto para el menú inicial como para el subsiguiente.
