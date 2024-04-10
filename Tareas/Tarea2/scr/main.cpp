@@ -56,20 +56,24 @@ int main() {
         case COMPARE_CONTRIES: {
             std::string nombrePais1, nombrePais2;
             cout << "Ingrese el nombre del primer país para comparar: ";
+            // Limpia el registro temporal (Buffer de entrada)
             cin.ignore();
+            // Lee lineas con espacios (Costra Rica)
             getline(cin, nombrePais1);
             cout << "Ingrese el nombre del segundo país para comparar: ";
             getline(cin, nombrePais2);
+            // Puntero a la clase pais para polimorfismo y comparar dos paises
+            // este puntero viene de las clases derivadas para poder comparar dos objetos iguales
             Pais* pais1 = miPlaneta.buscarPaisPorNombre(nombrePais1);
             Pais* pais2 = miPlaneta.buscarPaisPorNombre(nombrePais2);
 
             if (!pais1 || !pais2) {
-                cout << "Uno o ambos países no se pudieron encontrar.\n";
+            cout << "Uno o ambos países no se pudieron encontrar.\n";
             } else {
                 if (*pais1 == *pais2) {
-                    cout << "Los países son 'iguales' según el criterio de comparación de números primos.\n";
+                     cout << "Ambos países son iguales (ambos son de Primer Mundo o En Desarrollo).\n";
                 } else {
-                    cout << "Los países no son 'iguales'.\n";
+                    cout << "Los países no son iguales, por lo tanto, no pueden ser ambos de Primer Mundo ni ambos de En Desarrollo.\n";
                 }
             }
             }
@@ -86,6 +90,8 @@ int main() {
             getline(cin, nombrePais);
             
             imprimir_linea_decorativa();
+            // Función que genera el número alaeatorio para el identificador, excluye a los que ya salieron
+            // por medio de un array estatico, por lo que es único
             identificador = generar_numero_aleatorio_1_a_300();
             
             imprimir_linea_decorativa();
@@ -93,6 +99,7 @@ int main() {
             cin >> poblacion;
             
             imprimir_linea_decorativa();
+            // Revisa el tipo de identificador que le toco y categoriza el tipo de pais
             if (es_primo(identificador) == 1) {
                 tipoPais = 1;
             } else {
@@ -136,8 +143,10 @@ int main() {
                     imprimir_linea_decorativa();
                     continue;
             }
-
+            // !nombreContinente.empty() recorre la lista y revisa si nombreContinente seleccionado en el menú
+            // esta en el array
             if (selec_continent != EXIT_CONTINENT && !nombreContinente.empty()) {
+                // Tipo 1, crea objeto primer mundo con sus caracteristicas
                 if (tipoPais == 1) {
                     cout << "Tiene tecnología 5G? (1 para sí, 0 para no): ";
                     cin >> tieneTecnologia5G;
@@ -147,6 +156,7 @@ int main() {
                     
                     PaisPrimerMundo nuevoPaisPrimerMundo(nombrePais, identificador, poblacion, tieneTecnologia5G, tieneCentroInvestigacion);
                     miPlaneta.agregarPaisPrimerMundoAContinente(nuevoPaisPrimerMundo, nombreContinente);
+                // Tipo 2 crea objeto pais en desarrollo con sus caracteristicas
                 } else if (tipoPais == 2) {
                     PaisEnDesarrollo nuevoPaisEnDesarrollo(nombrePais, identificador, poblacion);
                     miPlaneta.agregarPaisEnDesarrolloAContinente(nuevoPaisEnDesarrollo, nombreContinente);
@@ -159,7 +169,8 @@ int main() {
             cout << "Ingrese el nombre del primer país para comparar: ";
             cin.ignore();
             getline(cin, DeletePais1);
-                bool eliminado = miPlaneta.eliminarPais(DeletePais1);
+            // Llama al metodo eliminarPais de la clase Planeta
+            bool eliminado = miPlaneta.eliminarPais(DeletePais1);
             if (eliminado) {
                 cout << "El país ha sido eliminado exitosamente.\n";
             } else {
