@@ -53,7 +53,7 @@ void push(st *s, int newItem) {
     }
 }
 
-// Se elimina un elemento del stack
+// Se elimina un elemento del stack.
 void pop(st *s) { 
     if (isempty(s)) {
         std::cout << "\nPILA VACÍA\n";
