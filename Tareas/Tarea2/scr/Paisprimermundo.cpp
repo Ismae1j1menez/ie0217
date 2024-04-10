@@ -33,8 +33,8 @@ using namespace std;
 
 PaisPrimerMundo::PaisPrimerMundo() : Pais(), tieneTecnologia5G(false), tieneCentroInvestigacion(false) {}
 
-PaisPrimerMundo::PaisPrimerMundo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneTecnologia5G, bool tieneCentroInvestigacion)
-: Pais(nombre, id, poblacion), tieneTecnologia5G(tieneTecnologia5G), tieneCentroInvestigacion(tieneCentroInvestigacion) {
+PaisPrimerMundo::PaisPrimerMundo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneTecnologia5G, bool tieneCentroInvestigacion, bool tieneAeropuertoMasAviones)
+: Pais(nombre, id, poblacion), tieneTecnologia5G(tieneTecnologia5G), tieneCentroInvestigacion(tieneCentroInvestigacion), tieneAeropuertoMasAviones(tieneAeropuertoMasAviones) {
 }
 
 // Metodo para ingresar en el miembro si tiene tecnologia 
@@ -57,6 +57,16 @@ bool PaisPrimerMundo::getCentroInvestigacion() const {
     return tieneCentroInvestigacion;
 }
 
+// Metodo para ingresar en el miembro si tiene aeropuerto y por consecuencia pasan aviones
+void PaisPrimerMundo::setAeropuertoMasAviones(bool tieneAeropuertoMasAviones) {
+    this->tieneAeropuertoMasAviones = tieneAeropuertoMasAviones;
+}
+
+// Metodo que retorna si tiene aeropuerto y por consecuencia pasan aviones
+bool PaisPrimerMundo::getAeropuertoMasAviones() const {
+    return tieneAeropuertoMasAviones;
+}
+
 // Metodo para imprimir la info
 void PaisPrimerMundo::imprimir_info_detallada() {
     cout << "País de Primer Mundo: " << getNombre() << "\n";
@@ -64,5 +74,6 @@ void PaisPrimerMundo::imprimir_info_detallada() {
     cout << "Población: " << getPoblacion() << "\n";
     cout << "Tecnología 5G: " << (getTecnologia5G() ? "Sí" : "No") << "\n";
     cout << "Centro de Investigación: " << (getCentroInvestigacion() ? "Sí" : "No") << "\n";
+    cout << "Tiene aeropuerto y llegan los aviones: " << (getAeropuertoMasAviones() ? "Sí" : "NO") << "\n"; 
     cout << "PIB: " << generarPIB() << "\n";
 }

@@ -43,6 +43,10 @@
  * la información y las operaciones asociadas con países en desarrollo.
  */
 class PaisEnDesarrollo : public Pais {
+private:
+    bool tieneAeropuertoMasAviones;
+
+
 public:
       /**
      * @brief Constructor predeterminado, inicializa un nuevo país en desarrollo con valores por defecto.
@@ -55,14 +59,16 @@ public:
      * @param id El identificador único del país.
      * @param poblacion La población del país.
      */
-    PaisEnDesarrollo(const std::string& nombre, unsigned long id, unsigned int poblacion);
-
+    PaisEnDesarrollo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneAeropuertoMasAviones);
         /**
      * @brief Imprime información detallada del país en desarrollo.
      * 
      * Muestra el nombre, identificador, población y PIB estimado del país.
      */
     void imprimir_info_detallada();
+    
+    void setAeropuertoMasAviones(bool tieneAeropuertoMasAviones);
+    bool getAeropuertoMasAviones() const;
 };
 
 #endif  // PAISENDESARROLLO_HPP

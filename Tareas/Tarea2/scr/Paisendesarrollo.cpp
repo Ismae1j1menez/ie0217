@@ -35,8 +35,8 @@ using namespace std;
 PaisEnDesarrollo::PaisEnDesarrollo() : Pais() {}
 
 // Constructor
-PaisEnDesarrollo::PaisEnDesarrollo(const std::string& nombre, unsigned long id, unsigned int poblacion) 
-: Pais(nombre, id, poblacion) {
+PaisEnDesarrollo::PaisEnDesarrollo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneAeropuertoMasAviones) 
+: Pais(nombre, id, poblacion), tieneAeropuertoMasAviones(tieneAeropuertoMasAviones) {
 }
 
 // Metodo para imprimir información 
@@ -44,5 +44,16 @@ void PaisEnDesarrollo::imprimir_info_detallada() {
     cout << "País en Desarrollo: " << getNombre() << "\n";
     cout << "Identificador: " << getID() << "\n";
     cout << "Población: " << getPoblacion() << "\n";
+    cout << "Tiene aeropuerto y llegan los aviones: " << (getAeropuertoMasAviones() ? "Sí" : "NO") << "\n"; 
     cout << "PIB: " << generarPIB() << "\n";
+}
+
+// Metodo para ingresar en el miembro si tiene aeropuerto y por consecuencia pasan aviones
+void PaisEnDesarrollo::setAeropuertoMasAviones(bool tieneAeropuertoMasAviones) {
+    this->tieneAeropuertoMasAviones = tieneAeropuertoMasAviones;
+}
+
+// Metodo que retorna si tiene aeropuerto y por consecuencia pasan aviones
+bool PaisEnDesarrollo::getAeropuertoMasAviones() const {
+    return tieneAeropuertoMasAviones;
 }

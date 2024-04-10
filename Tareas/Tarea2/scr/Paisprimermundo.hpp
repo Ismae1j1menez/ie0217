@@ -45,15 +45,21 @@ class PaisPrimerMundo : public Pais {
 private:
     bool tieneTecnologia5G; ///< Indica si el país tiene tecnología 5G.
     bool tieneCentroInvestigacion; ///< Indica si el país tiene un centro de investigación.
+    bool tieneAeropuertoMasAviones;
 public:
     PaisPrimerMundo();
-    PaisPrimerMundo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneTecnologia5G, bool tieneCentroInvestigacion);
+    PaisPrimerMundo(const std::string& nombre, unsigned long id, unsigned int poblacion, bool tieneTecnologia5G, bool tieneCentroInvestigacion, bool tieneAeropuertoMasAviones);
     
     void setTecnologia5G(bool tieneTecnologia5G);
-    bool getTecnologia5G() const;
+    bool getTecnologia5G() const; 
     
     void setCentroInvestigacion(bool tieneCentroInvestigacion);
     bool getCentroInvestigacion() const;
+
+
+    void setAeropuertoMasAviones(bool tieneAeropuertoMasAviones);
+    bool getAeropuertoMasAviones() const;
+
 
     void imprimir_info_detallada();
 

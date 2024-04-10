@@ -127,7 +127,7 @@ int main() {
             int tipoPais;
             unsigned long identificador;
             unsigned int poblacion;
-            bool tieneTecnologia5G, tieneCentroInvestigacion;
+            bool tieneTecnologia5G, tieneCentroInvestigacion, tieneAeropuertoMasAviones;
             
             imprimir_linea_decorativa();
             cout << "Ingrese el nombre del nuevo país: ";
@@ -198,12 +198,17 @@ int main() {
                     
                     cout << "Tiene centro de investigación? (1 para sí, 0 para no): ";
                     cin >> tieneCentroInvestigacion;
+
+                    cout << "Tiene aeropuerto y por consecuencia si llegan los aviones? (1 para sí, 0 para no): ";
+                    cin >> tieneAeropuertoMasAviones;
                     
-                    PaisPrimerMundo nuevoPaisPrimerMundo(nombrePais, identificador, poblacion, tieneTecnologia5G, tieneCentroInvestigacion);
+                    PaisPrimerMundo nuevoPaisPrimerMundo(nombrePais, identificador, poblacion, tieneTecnologia5G, tieneCentroInvestigacion, tieneAeropuertoMasAviones);
                     miPlaneta.agregarPaisPrimerMundoAContinente(nuevoPaisPrimerMundo, nombreContinente);
                 // Tipo 2 crea objeto pais en desarrollo con sus caracteristicas
                 } else if (tipoPais == 2) {
-                    PaisEnDesarrollo nuevoPaisEnDesarrollo(nombrePais, identificador, poblacion);
+                    cout << "Tiene aeropuerto y por consecuencia si llegan los aviones? (1 para sí, 0 para no): ";
+                    cin >> tieneAeropuertoMasAviones;
+                    PaisEnDesarrollo nuevoPaisEnDesarrollo(nombrePais, identificador, poblacion, tieneAeropuertoMasAviones);
                     miPlaneta.agregarPaisEnDesarrolloAContinente(nuevoPaisEnDesarrollo, nombreContinente);
                 }
             }
