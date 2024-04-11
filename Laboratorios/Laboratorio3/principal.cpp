@@ -4,6 +4,7 @@
 #include "Funciones.hpp"
 using namespace std; 
 
+// Enum para las opciones del switch
 enum {
     AGREGAR_LIBRO = 1,
     MOSTRAR_LIBROS,
@@ -14,6 +15,7 @@ enum {
 int main(){
     Libro* listaLibros = nullptr;
     int opcion; 
+    // Menu con switch
     do{
         cout << "Selecciones su opcion: " << endl; 
         cout << "1. Agregar un libro" << endl; 
@@ -33,6 +35,7 @@ int main(){
                 break; 
         }
     } while (opcion != 3);
+    // Importante liberar la memoria
     liberarMemoria(listaLibros);
     return 0; 
 }
