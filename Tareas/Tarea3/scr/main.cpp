@@ -33,7 +33,7 @@ int main() {
         cin  >> opciones;
 
         switch (opciones){
-                case AGREGAR_CONTACTO:
+            case AGREGAR_CONTACTO:
                 do {
                     imprimir_linea_decorativa();
                     cout << "Menu de Agregar Contacto:\n";
@@ -67,33 +67,58 @@ int main() {
                 } while (opciones_agregar != NO_AREGAR);
                 break;
             case ELIMINAR_CONTACTO:
-                do{
+                do {
                     imprimir_linea_decorativa();
-                    cout << "Menu Principal:\n";
+                    cout << "Menu de Eliminación de Contactos:\n";
                     imprimir_linea_decorativa();
-                    cout << "1. .\n";
-                    cout << "2. .\n";
-                    cout << "3. .\n";
+                    cout << "1. Eliminar contacto solo del almacenamiento interno.\n";
+                    cout << "2. Eliminar contacto solo del cloud.\n";
+                    cout << "3. Eliminar contacto de ambos, almacenamiento interno y cloud.\n";
+                    cout << "4. Volver al menú principal.\n";
                     imprimir_linea_decorativa();
-                    cout << "Ingrese su opcion: ";
-                    cin  >> opciones_eliminar;
+                    cout << "Ingrese su opción: ";
+                    cin >> opciones_eliminar;
+                    cin.ignore(); 
+
                     switch (opciones_eliminar) {
                         case ELIMINAR_ALMACENAMIENTO_INTERNO:
+                            cout << "Ingrese el nombre del contacto: ";
+                            getline(cin, nombre_contacto);
+                            cout << "Ingrese el número de teléfono: ";
+                            getline(cin, tele_contacto);
+                            cout << "Eliminando contacto del almacenamiento interno...\n";
+                            lista.eliminarContacto(nombre_contacto, tele_contacto);
                             break; 
                         case ELIMINAR_CLOUD:
+                            cout << "Ingrese el nombre del contacto: ";
+                            getline(cin, nombre_contacto);
+                            cout << "Ingrese el número de teléfono: ";
+                            getline(cin, tele_contacto);
+                            cout << "Eliminando contacto del cloud...\n";
+                            hashTable.eliminarContacto(nombre_contacto, tele_contacto);
                             break;
                         case ELIMINAR_AMBAS:
+                            cout << "Ingrese el nombre del contacto: ";
+                            getline(cin, nombre_contacto);
+                            cout << "Ingrese el número de teléfono: ";
+                            getline(cin, tele_contacto);
+                            cout << "Eliminando contacto de ambos almacenamientos...\n";
+                            lista.eliminarContacto(nombre_contacto, tele_contacto);
+                            hashTable.eliminarContacto(nombre_contacto, tele_contacto);
                             break;
                         case NO_ELIMINAR:
+                            cout << "Volviendo al menú principal..." << endl;
                             break;
                         default:
-                        imprimir_linea_decorativa();
-                        cout << "Opcion no valida. Intente de nuevo...\n";
-                        imprimir_linea_decorativa();
+                            imprimir_linea_decorativa();
+                            cout << "Opción no válida. Intente de nuevo...\n";
+                            imprimir_linea_decorativa();
+                            break;
                     }
-                } while (opciones != SALIR);
-                break; 
+                } while (opciones_eliminar != NO_ELIMINAR);
+                break;
             case IMPRIMIR_HASH:
+                hashTable.imprimirTabla();
                 break;
             case MOSTRAR_TODOS_CONTACTOS:
                 break;

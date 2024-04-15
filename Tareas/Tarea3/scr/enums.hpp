@@ -14,7 +14,7 @@ enum opcion_agregar_contacto {
 };
 
 enum opcion_elimninar_contacto {
-    ELIMINAR_ALMACENAMIENTO_INTERNO,
+    ELIMINAR_ALMACENAMIENTO_INTERNO = 1,
     ELIMINAR_CLOUD,
     ELIMINAR_AMBAS,
     NO_ELIMINAR
