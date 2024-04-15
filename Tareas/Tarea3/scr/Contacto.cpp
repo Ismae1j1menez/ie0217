@@ -1,4 +1,6 @@
 //Contacto.cpp
+#ifndef CONTACTO_HPP
+#define CONTACTO_HPP
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
@@ -66,3 +68,5 @@ public:
         }
     } */
 };
+
+#endif

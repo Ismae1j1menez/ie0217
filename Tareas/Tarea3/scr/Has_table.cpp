@@ -1,4 +1,6 @@
 //Has_table.cpp
+#ifndef HAS_TABLE_HPP
+#define HAS_TABLE_HPP
 #include <vector>
 #include <string>
 #include "Lista_enlazada.cpp"  
@@ -53,3 +55,5 @@ public:
         return nullptr;
     } */
 };
+
+#endif
