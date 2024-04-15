@@ -16,8 +16,26 @@ enum Opciones {
     SALIR
 };
 
+enum opcion_agregar_contacto {
+    AGREGAREL_CONTACTO = 1, 
+    NO_AREGAR
+};
+
+enum opcion_elimninar_contacto {
+    ELIMINAR_ALMACENAMIENTO_INTERNO,
+    ELIMINAR_CLOUD,
+    ELIMINAR_AMBAS,
+    NO_ELIMINAR
+};
+
 int main() {
-    int opciones; 
+    int opciones;
+    int opciones_agregar;
+    int opciones_eliminar; 
+    ListaEnlazada lista;
+    TablaHash hashTable(10); 
+
+
 
     do{
         imprimir_linea_decorativa();
@@ -34,14 +52,61 @@ int main() {
 
         switch (opciones){
             case AGREGAR_CONTACTO:
+                do{
+                    imprimir_linea_decorativa();
+                    cout << "Menu Principal:\n";
+                    imprimir_linea_decorativa();
+                    cout << "1. .\n";
+                    cout << "2. .\n";
+                    imprimir_linea_decorativa();
+                    cout << "Ingrese su opcion: ";
+                    cin  >> opciones_agregar;
+                    switch (opciones_agregar) {
+                        case AGREGAREL_CONTACTO:
+                            break; 
+                        case NO_AREGAR:
+                            break;
+                        default:
+                        imprimir_linea_decorativa();
+                        cout << "Opcion no valida. Intente de nuevo...\n";
+                        imprimir_linea_decorativa();
+                            break; 
+                    }
+                } while (opciones != SALIR);
                 break;
             case ELIMINAR_CONTACTO:
+                do{
+                    imprimir_linea_decorativa();
+                    cout << "Menu Principal:\n";
+                    imprimir_linea_decorativa();
+                    cout << "1. .\n";
+                    cout << "2. .\n";
+                    cout << "3. .\n";
+                    imprimir_linea_decorativa();
+                    cout << "Ingrese su opcion: ";
+                    cin  >> opciones_eliminar;
+                    switch (opciones_eliminar) {
+                        case ELIMINAR_ALMACENAMIENTO_INTERNO:
+                            break; 
+                        case ELIMINAR_CLOUD:
+                            break;
+                        case ELIMINAR_AMBAS:
+                            break;
+                        case NO_ELIMINAR:
+                            break;
+                        default:
+                        imprimir_linea_decorativa();
+                        cout << "Opcion no valida. Intente de nuevo...\n";
+                        imprimir_linea_decorativa();
+                    }
+                } while (opciones != SALIR);
                 break; 
             case IMPRIMIR_HASH:
                 break;
             case MOSTRAR_TODOS_CONTACTOS:
                 break;
             case SALIR:
+                cout << "Saliendo del programa..." << endl;
                 break;
             default:
                 imprimir_linea_decorativa();
