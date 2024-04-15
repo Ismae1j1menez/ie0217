@@ -98,6 +98,40 @@ public:
         std::cout << "No se encontró el contacto." << std::endl;
         return nullptr;
     }
+
+
+    void eliminarContacto(const std::string& nombre, const std::string& numTel) {
+        int index = hashFunction(nombre + numTel);
+        Node* current = contenedor_direcciones[index];
+        Node* prev = nullptr;
+
+        while (current != nullptr) {
+            if (strcmp(current->contacto->nombre, nombre.c_str()) == 0 && strcmp(current->contacto->telefono, numTel.c_str()) == 0) {
+                if (prev == nullptr) {
+                    contenedor_direcciones[index] = current->next;
+                } else {
+                    prev->next = current->next;
+                }
+                delete current;
+                return;
+            }
+            prev = current;
+            current = current->next;
+        }
+    }
+
+    void imprimirTabla() {
+        std::cout << "Hash Table:" << std::endl;
+        for (int i = 0; i < size; ++i) {
+            Node* current = contenedor_direcciones[i];
+            std::cout << "Bucket " << i << ": ";
+            while (current != nullptr) {
+                std::cout << "[" << current->contacto->nombre << ", " << current->contacto->telefono << "] -> ";
+                current = current->next;
+            }
+            std::cout << "nullptr" << std::endl;
+        }
+    }
 };
 
 
@@ -133,6 +167,25 @@ public:
             current = current->next;
         }
     } 
+
+    void eliminarContacto(const std::string& nombre, const std::string& numTel) {
+        Node* current = head;
+        Node* prev = nullptr;
+
+        while (current != nullptr) {
+            if (strcmp(current->contacto->nombre, nombre.c_str()) == 0 && strcmp(current->contacto->telefono, numTel.c_str()) == 0) {
+                if (prev == nullptr) {
+                    head = current->next;
+                } else {
+                    prev->next = current->next;
+                }
+                delete current; 
+                return;
+            }
+            prev = current;
+            current = current->next;
+        }
+    }
 };
 
 
@@ -142,11 +195,31 @@ int main() {
 
     const char* nombre = "John Doe";
     const char* telefono = "123-456-7890";
+    const char* nombre2 = "Jane Doe";
+    const char* telefono2 = "987-654-3210";
 
     lista.agregarContacto(nombre, telefono);
     hashTable.insertarContacto(std::string(nombre), std::string(telefono));
+    lista.agregarContacto(nombre2, telefono2);
+    hashTable.insertarContacto(std::string(nombre2), std::string(telefono2));
+
+    std::cout << "Mostrando todos los contactos:" << std::endl;
     lista.mostrarContactos();
-    hashTable.buscarContacto(nombre, telefono);
+
+    std::cout << "Buscando a John Doe:" << std::endl;
+    hashTable.buscarContacto(std::string(nombre), std::string(telefono));
+
+    std::cout << "Imprimiendo Hash-Table:" << std::endl;
+    hashTable.imprimirTabla();
+
+    std::cout << "Eliminando a Jane Doe:" << std::endl;
+    lista.eliminarContacto(std::string(nombre2), std::string(telefono2));
+    hashTable.eliminarContacto(std::string(nombre2), std::string(telefono2));
+
+    std::cout << "Contactos tras eliminar a Jane Doe:" << std::endl;
+    lista.mostrarContactos();
+    std::cout << "Hash-Table tras eliminar a Jane Doe:" << std::endl;
+    hashTable.imprimirTabla();
 
     return 0;
 }
