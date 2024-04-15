@@ -5,33 +5,15 @@
 #include "Lista_enlazada.hpp"
 #include "Node.hpp"
 #include "Funciones.hpp"
+#include "enums.hpp"
 using namespace std; 
-
-
-enum Opciones {
-    AGREGAR_CONTACTO = 1,
-    ELIMINAR_CONTACTO,
-    IMPRIMIR_HASH,
-    MOSTRAR_TODOS_CONTACTOS,
-    SALIR
-};
-
-enum opcion_agregar_contacto {
-    AGREGAREL_CONTACTO = 1, 
-    NO_AREGAR
-};
-
-enum opcion_elimninar_contacto {
-    ELIMINAR_ALMACENAMIENTO_INTERNO,
-    ELIMINAR_CLOUD,
-    ELIMINAR_AMBAS,
-    NO_ELIMINAR
-};
 
 int main() {
     int opciones;
     int opciones_agregar;
     int opciones_eliminar; 
+    string nombre_contacto;
+    string tele_contacto;
     ListaEnlazada lista;
     TablaHash hashTable(10); 
 
@@ -51,28 +33,38 @@ int main() {
         cin  >> opciones;
 
         switch (opciones){
-            case AGREGAR_CONTACTO:
-                do{
+                case AGREGAR_CONTACTO:
+                do {
                     imprimir_linea_decorativa();
-                    cout << "Menu Principal:\n";
+                    cout << "Menu de Agregar Contacto:\n";
                     imprimir_linea_decorativa();
-                    cout << "1. .\n";
-                    cout << "2. .\n";
+                    cout << "1. Agregar contacto en el almacenamiento interno y el cloud.\n";
+                    cout << "2. Volver al menu principal.\n";
                     imprimir_linea_decorativa();
                     cout << "Ingrese su opcion: ";
-                    cin  >> opciones_agregar;
+                    cin >> opciones_agregar;
+                    cin.ignore(); 
+
                     switch (opciones_agregar) {
                         case AGREGAREL_CONTACTO:
-                            break; 
+                            imprimir_linea_decorativa();
+                            cout << "Ingrese el nombre del contacto: ";
+                            getline(cin, nombre_contacto);
+                            cout << "Ingrese el número de teléfono: ";
+                            getline(cin, tele_contacto);
+                            lista.agregarContacto(nombre_contacto.c_str(), tele_contacto.c_str());
+                            hashTable.insertarContacto(nombre_contacto, tele_contacto);
+                            break;
                         case NO_AREGAR:
+                            cout << "Volviendo al menu principal..." << endl;
                             break;
                         default:
-                        imprimir_linea_decorativa();
-                        cout << "Opcion no valida. Intente de nuevo...\n";
-                        imprimir_linea_decorativa();
-                            break; 
+                            imprimir_linea_decorativa();
+                            cout << "Opcion no valida. Intente de nuevo...\n";
+                            imprimir_linea_decorativa();
+                            break;
                     }
-                } while (opciones != SALIR);
+                } while (opciones_agregar != NO_AREGAR);
                 break;
             case ELIMINAR_CONTACTO:
                 do{
