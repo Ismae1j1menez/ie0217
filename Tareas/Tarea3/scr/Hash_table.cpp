@@ -103,7 +103,7 @@ void TablaHash::eliminarContacto(const std::string& nombre, const std::string& n
         // Con strcmp revisa si el telefono y el nombre son iguales
         // strcmp devuelve positivo si char1=b > a char2=a
         // strcmp devuelve negativo si char1=a < a char2=b
-        // // strcmp devuelve 0 si son iguales
+        // devuelve 0 si son iguales
         if (strcmp(current->contacto->nombre, nombre.c_str()) == 0 && strcmp(current->contacto->telefono, numTel.c_str()) == 0) {
             if (prev == nullptr) {
                 contenedor_direcciones[index] = current->next;
@@ -118,12 +118,12 @@ void TablaHash::eliminarContacto(const std::string& nombre, const std::string& n
     }
 }
 
-// Imprime la Hash-Table mostrando las jeys results y las listas enlazadas asicuadas a cada key
+// Imprime la Hash-Table mostrando las jeys results y las listas enlazadas asignadas a cada key
 void TablaHash::imprimirTabla() {
     std::cout << "Hash Table:" << std::endl;
     for (int i = 0; i < size; ++i) {
         Node* current = contenedor_direcciones[i];
-        std::cout << "Bucket " << i << ": ";
+        std::cout << "Key = " << i << ": ";
         while (current != nullptr) {
             std::cout << "[" << current->contacto->nombre << ", " << current->contacto->telefono << "] -> ";
             current = current->next;

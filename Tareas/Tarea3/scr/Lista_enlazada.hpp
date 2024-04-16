@@ -13,8 +13,9 @@ public:
     ListaEnlazada();
     ~ListaEnlazada();
     void agregarContacto(const char* nombre, const char* telefono);
-    void mostrarContactos();
     void eliminarContacto(const std::string& nombre, const std::string& numTel);
+    void ordenarAlfabeticamente();
+    void mostrarContactos();
 };
 
 #endif

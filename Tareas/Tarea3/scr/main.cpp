@@ -121,6 +121,8 @@ int main() {
                 hashTable.imprimirTabla();
                 break;
             case MOSTRAR_TODOS_CONTACTOS:
+                lista.ordenarAlfabeticamente();
+                //lista.mostrarContactos();
                 break;
             case SALIR:
                 cout << "Saliendo del programa..." << endl;

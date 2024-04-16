@@ -1,4 +1,6 @@
 #include "Lista_enlazada.hpp"
+#include "Node.hpp"
+#include <iostream>
 
 // Constructor, inicializa el puntero inicial en nullptr
 ListaEnlazada::ListaEnlazada() : head(nullptr) {}
@@ -20,14 +22,6 @@ void ListaEnlazada::agregarContacto(const char* nombre, const char* telefono) {
     head = nuevo;
 }
 
-void ListaEnlazada::mostrarContactos() {
-    Node* current = head;
-    while (current != nullptr) {
-        current->contacto->mostrar();
-        current = current->next;
-    }
-} 
-
 void ListaEnlazada::eliminarContacto(const std::string& nombre, const std::string& numTel) {
     Node* current = head;
     Node* prev = nullptr;
@@ -43,6 +37,48 @@ void ListaEnlazada::eliminarContacto(const std::string& nombre, const std::strin
             return;
         }
         prev = current;
+        current = current->next;
+    }
+}
+
+// Función que ordena alfabeticamente para luego poder mostrar los contactos 
+void ListaEnlazada::ordenarAlfabeticamente() {
+    if (!head || !head->next) return;
+    bool swapped;
+    do {
+        swapped = false;
+        Node* current = head;
+        Node* prev = nullptr;
+
+        while (current != nullptr && current->next != nullptr) {
+            // Usando strcmp para comparar
+            if (strcmp(current->contacto->nombre, current->next->contacto->nombre) > 0) {
+                Node* tmp = current->next;
+                current->next = tmp->next;
+                tmp->next = current;
+
+                if (prev == nullptr) {
+                    head = tmp;
+                } else {
+                    prev->next = tmp;
+                }
+
+                swapped = true;
+                prev = tmp; 
+            } else {
+                prev = current;
+                current = current->next;
+            }
+        }
+    } while (swapped);
+    mostrarContactos(); 
+}
+
+// Muestra los cóntactos, como ya estan ordenados alfabeticamente entonces solo se imprimen
+void ListaEnlazada::mostrarContactos() {
+    Node* current = head;
+    while (current != nullptr) {
+        std::cout << current->contacto->nombre << ": " << current->contacto->telefono << std::endl;
         current = current->next;
     }
 }
