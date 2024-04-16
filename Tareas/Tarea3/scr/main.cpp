@@ -15,7 +15,7 @@ int main() {
     string nombre_contacto;
     string tele_contacto;
     ListaEnlazada lista;
-    TablaHash hashTable(10); 
+    TablaHash hashTable(20); 
 
 
 
@@ -136,38 +136,3 @@ int main() {
     } while (opciones != SALIR);
     return 0; 
 }
-
-/*int main() {
-    ListaEnlazada lista;
-    TablaHash hashTable(10); 
-
-    const char* nombre = "John Doe";
-    const char* telefono = "123-456-7890";
-    const char* nombre2 = "Jane Doe";
-    const char* telefono2 = "987-654-3210";
-
-    lista.agregarContacto(nombre, telefono);
-    hashTable.insertarContacto(std::string(nombre), std::string(telefono));
-    lista.agregarContacto(nombre2, telefono2);
-    hashTable.insertarContacto(std::string(nombre2), std::string(telefono2));
-
-    std::cout << "Mostrando todos los contactos:" << std::endl;
-    lista.mostrarContactos();
-
-    std::cout << "Buscando a John Doe:" << std::endl;
-    hashTable.buscarContacto(std::string(nombre), std::string(telefono));
-
-    std::cout << "Imprimiendo Hash-Table:" << std::endl;
-    hashTable.imprimirTabla();
-
-    std::cout << "Eliminando a Jane Doe:" << std::endl;
-    lista.eliminarContacto(std::string(nombre2), std::string(telefono2));
-    hashTable.eliminarContacto(std::string(nombre2), std::string(telefono2));
-
-    std::cout << "Contactos tras eliminar a Jane Doe:" << std::endl;
-    lista.mostrarContactos();
-    std::cout << "Hash-Table tras eliminar a Jane Doe:" << std::endl;
-    hashTable.imprimirTabla();
-
-    return 0;
-}*/
