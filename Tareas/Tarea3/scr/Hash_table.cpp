@@ -1,3 +1,37 @@
+//MIT License
+//
+//Copyright (c) 2024 Ismael Jiménez Carballo
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
+/**
+ * @file TablaHash.cpp
+ * @brief Implementación de la clase TablaHash.
+ *
+ * Este archivo contiene la implementación de la clase TablaHash, que representa una tabla hash
+ * utilizada para almacenar y gestionar contactos. Incluye funciones para calcular el índice hash,
+ * insertar, buscar y eliminar contactos, así como para imprimir la tabla hash completa.
+ *
+ * La clase TablaHash utiliza una vector de punteros a Node para almacenar las listas enlazadas de contactos
+ * asignadas a cada índice de la tabla hash. Se asegura de manejar colisiones utilizando listas enlazadas
+ * para permitir el almacenamiento de múltiples contactos en el mismo índice.
+ */
 #include "Hash_table.hpp"
 
 // Esta es la función que crea el indice para almacenar la dirección
@@ -116,6 +150,9 @@ void TablaHash::eliminarContacto(const std::string& nombre, const std::string& n
         prev = current;
         current = current->next;
     }
+    if (current == nullptr) {
+        std::cout << "No se encontro el contacto en el cloud..." << std::endl; 
+    }
 }
 
 // Imprime la Hash-Table mostrando las jeys results y las listas enlazadas asignadas a cada key
@@ -123,7 +160,7 @@ void TablaHash::imprimirTabla() {
     std::cout << "Hash Table:" << std::endl;
     for (int i = 0; i < size; ++i) {
         Node* current = contenedor_direcciones[i];
-        std::cout << "Key = " << i << ": ";
+        std::cout << "Index = " << i << ": ";
         while (current != nullptr) {
             std::cout << "[" << current->contacto->nombre << ", " << current->contacto->telefono << "] -> ";
             current = current->next;
