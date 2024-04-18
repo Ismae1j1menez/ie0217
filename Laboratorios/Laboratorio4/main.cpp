@@ -89,12 +89,31 @@ void measuringShortingTime(void (*sortingAlgorithm)(int[], int), int arr[], int 
     cout << "Tiempo de " << algorithmName << ": " << duration.count() << " microsegundos" << endl;
 }
 
+// Como quick sort tiene diferentes argumentos hay que arreglar la función para que pueda obtener estos?
+void measureQuickShortTime(void (*sortingAlgorithm)(int[], int, int), int arr[], int low, int high, string algorithmName){
+    high_resolution_clock::time_point start = high_resolution_clock::now();
+    sortingAlgorithm(arr, low, high);
+    high_resolution_clock::time_point stop = high_resolution_clock::now();
+    std::chrono::microseconds duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    cout << "Tiempo de " << algorithmName << ": " << duration.count() << " microsegundos" << endl;
+}
+
 int main(){
     const int SIZE = 10000;
     int arr[SIZE];
+    // Nota: como se genera un array se ordena y este es una referencia, al pasar por los otros
+    // ya va a estar ordenado, por eso hay que generar un array nuevo
+    generateRandomAarry(arr, SIZE);
     measuringShortingTime(bubbleSort, arr, SIZE, "Bubble Sort");
+
+    generateRandomAarry(arr, SIZE);
     measuringShortingTime(selectionSort, arr, SIZE, "Selection Sort");
+    generateRandomAarry(arr, SIZE);
+
     measuringShortingTime(insertionSort, arr, SIZE, "Insertion Sort");
+    generateRandomAarry(arr, SIZE);
+
+    measureQuickShortTime(quickSort, arr, 0, SIZE - 1, "Quick Sort");
     generateRandomAarry(arr, SIZE);
     return 0; 
 }
