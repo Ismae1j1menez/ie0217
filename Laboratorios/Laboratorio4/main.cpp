@@ -73,7 +73,7 @@ void quickSort(int arr[], int low, int high) {
 void generateRandomAarry(int arr[], int n){
     srand(time(0)); // Base donde se comienza a generar números aleatorios
     for (int i = 0; i < n; ++i){
-        arr[i] = rand() % 100; 
+        arr[i] = rand() % 10000; 
     }
 }
 
