@@ -46,12 +46,16 @@ void insertionSort(int arr[], int n) {
 }
 
 // Función lla mada en el quickSort, es fundamental para partir en base al pivote
-int partition(int arr[], int low, int high) {
+int partition(int arr[], int low, int high) { // Argumentos: array,low, high
+    // El pivote es el elemento mayor
     int pivot = arr[high];
     int i = low - 1;
+    // Recorre la lista
     for (int j = low; j < high; ++j) {
+        // Si el elemento del indice j es menor al pivote 
         if (arr[j] < pivot) {
             ++i;
+            // Hace el intercambio de posiciones
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
