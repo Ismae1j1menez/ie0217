@@ -36,7 +36,6 @@ Estos programas se pueden compilar utilizando el objetivo `P1`:
 - Class_template.cpp
 - Excepciones.cpp
 - Exception.cpp
-- exceptions.cpp
 - fun_temp.cpp
 - multi_params_temp.cpp
 - noException.cpp
