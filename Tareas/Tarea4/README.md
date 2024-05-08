@@ -21,7 +21,7 @@ make P2 <NOMBRE_DEL_ARCHIVO_1_SIN_EXTENSIÃ“N> <NOMBRE_DEL_ARCHIVO_2_SIN_EXTENSIÃ
 make clean
 ```
 
-- Para compilar la tarea 3 se usa el comando:
+- Para compilar la tarea 4 se usa el comando:
 ```
 make P2 Matriz Operacionesbasicas Validacion mainp
 ```
