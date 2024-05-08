@@ -23,7 +23,17 @@ make clean
 
 - Para compilar la tarea 3 se usa el comando:
 ```
-make P2 Contacto Funciones main Hash_table Lista_enlazada Node
+make P2 Matriz Operacionesbasicas Validacion mainp
+```
+
+- Para compilar sin el makefile se puede usar el comando:
+```
+g++ -o main.exe  mainp.cpp Matriz.cpp Operacionesbasicas.cpp Validacion.cpp
+```
+
+- Para ejecutar sin el makefile se puede usar el comando:
+```
+./main.exe
 ```
 
 ## DOXYGEN
@@ -47,20 +57,6 @@ https://documentationtarea3ie0217.netlify.app/
 ## Instrucciones Detalladas de Uso
     
 El Makefile proporciona instrucciones claras para su adecuada utilización. Es crucial introducir el nombre del archivo de manera precisa, sin errores, para garantizar su correcta ejecución. Dado que se manejan cuatro archivos y los archivos con extensión `.hpp` no requieren compilación, se debe emplear el comando `P2` para compilar los archivos.
-
-## Instrucciones para la aplicación
-Al ejecutar el archivo resultante de la compilación, se presenta un menú inicial con cinco opciones. Se recomienda ingresar únicamente números, ya que el programa espera un valor entero y puede entrar en un bucle si recibe un carácter o una cadena de texto. Esto aplica tanto para el menú inicial como para el subsiguiente.
-
-### Secuencia del programa
-El programa inicia desplegando un menú con diversas opciones. Es crucial seguir el "happy path", ingresando únicamente números como se espera. Si se ingresan caracteres o cadenas de texto, el sistema entrará en un bucle debido a que el comando cin espera recibir un entero.
-
-Tanto el almacenamiento interno como el almacenamiento en la nube (cloud) comienzan vacíos. Es necesario ingresar contactos para iniciar. En caso de intentar imprimir la tabla hash en este estado inicial, solo se mostrarán punteros nulos. Si se intenta imprimir el contenido del almacenamiento interno cuando está vacío, no se mostrará ningún dato. Además, si se intenta eliminar un contacto que no existe en el almacenamiento interno, en la nube, o en ambos, se mostrará un mensaje indicando que el contacto no fue encontrado.
-
-Al agregar contactos, estos se registran tanto en el almacenamiento interno como en la nube, siendo la nube una copia exacta del almacenamiento interno. La eliminación de contactos requiere la entrada correcta del nombre y número de teléfono. Si estos datos no se ingresan correctamente, el sistema indicará que no se encontró el contacto. Se ofrecen tres opciones de eliminación: en el almacenamiento interno, en la nube, o en ambos.
-
-Al imprimir la tabla hash, se mostrarán los índices junto con su nodo correspondiente; si un índice está vacío, se imprimirá nullptr. Es importante mencionar que la lista de contactos tiene un límite máximo de 20 entradas, restricción que aplica principalmente para la tabla hash.
-
-Finalmente, la impresión de todos los contactos está disponible siempre que haya datos para mostrar.
 
 
 ## Parte Teórica
