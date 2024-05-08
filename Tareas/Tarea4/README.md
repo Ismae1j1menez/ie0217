@@ -1,6 +1,6 @@
-# Tarea 3
+# Tarea 4
 
-Este README tiene como objetivo proporcionar una descripción breve sobre la Tarea 3, las instrucciones de ejecución del programa con su respectivo Makefile, y las respuestas a la parte teórica de la respectiva tarea.
+Este README tiene como objetivo proporcionar una descripción breve sobre la Tarea 4, las instrucciones de ejecución del programa con su respectivo Makefile, y las respuestas a la parte teórica de la respectiva tarea.
 
 ## Uso del Makefile
 
@@ -64,95 +64,83 @@ Finalmente, la impresión de todos los contactos está disponible siempre que ha
 
 
 ## Parte Teórica
-1. ¿Qué es un algoritmo y cuáles son sus características principales?
-> - Un algoritmo es un conjunto de instrucciones bien definidas para resolver un problema específico. Este toma un conjunto de entradas y produce un resultado.
->   - Sus características son:
->     - Las entradas y salidas deben definirse con precisión.
->     - Cada paso del algoritmo debe ser claro e inequívoco.
->     - Los algoritmos deberían ser más eficaces entre las diversas formas de resolver un problema.
->     - Un algoritmo no debería incluir código informático. Debe escribirse de tal manera que pueda utilizarse en diferentes lenguajes de programación.
+# Templates
 
-2. Explica la diferencia entre un algoritmo eficiente y uno ineficiente.
-> - La eficiencia de un algoritmo se refiere a su capacidad para utilizar de manera efectiva los recursos disponibles. Un algoritmo eficiente realiza la tarea en la menor cantidad de tiempo y utilizando la menor cantidad de memoria posible. Por el contrario, un algoritmo ineficiente no cumple con estos requisitos.
+### 1. Definición de Templates
+> Los templates en C++ son herramientas que permiten a los programadores especificar el tipo de datos como un parámetro. Esto facilita la reutilización de código, ya que no es necesario escribir múltiples versiones de una función o clase para diferentes tipos de datos. Por ejemplo, se puede definir una función `add` que sume dos números de cualquier tipo:
+> ```cpp
+> template <typename T>
+> T add(T num1, T num2) {
+>     return num1 + num2;
+> }
+> ```
 
-3. ¿Qué es una estructura de datos y por qué son importantes?
-> - Una estructura de datos es un sistema de almacenamiento que almacena y organiza datos. Representa una forma de organizar los datos en una computadora para que puedan ser accedidos y actualizados de manera eficiente.
+### 2. Sobrecarga de Plantillas
+> En C++, las plantillas de funciones pueden sobrecargarse de la misma manera que las funciones normales, es decir, mediante la diferencia en la cantidad o tipo de parámetros. La sobrecarga permite a los desarrolladores definir varias versiones de una función template que se diferencian en el número o tipo de sus argumentos. Por ejemplo:
+> ```cpp
+> template <typename T>
+> T add(T num1, T num2);
+> template <typename T, typename U>
+> auto add(T num1, U num2);
+> template <typename T>
+> T add(T num1, T num2, T num3);
+> ```
 
-4. Describe las diferencias entre una estructura de datos estática y una dinámica.
-> - Diferencias entre estructuras de datos estáticas y dinámicas:
-Una estructura de datos estática es aquella cuyo tamaño y estructura se definen durante la compilación y no pueden cambiar en tiempo de ejecución. Por ejemplo, los arreglos tienen un tamaño fijo que se debe especificar cuando se compilan. Por otra parte, una estructura de datos dinámica puede modificar su tamaño y estructura durante la ejecución del programa. Esto es posible gracias a la memoria asignada en el heap, lo que permite que la estructura se expanda o contraiga según sea necesario. Ejemplos de estructuras dinámicas incluyen listas enlazadas, árboles, y grafos, entre otros.
+### 3. Plantillas de Clases
+> Las plantillas de clases en C++ permiten definir clases donde los tipos de sus atributos y métodos pueden ser especificados como parámetros. Esto facilita el uso del mismo código para trabajar con diferentes tipos de datos, promoviendo la reutilización y flexibilidad del código.
 
-5. ¿Qué es la memoria dinámica y cómo se gestiona en lenguajes de programación como
-C++, explique las operaciones que se pueden realizar?
-> - La memoria dinámica en C++ es un segmento de memoria en el heap que se puede asignar y modificar durante la ejecución de un programa usando comandos como malloc(), calloc(), y new para reservar espacio. Esta memoria debe ser explícitamente liberada utilizando free() o delete para evitar fugas de memoria, asegurando así que los recursos estén disponibles para otros usos o programas.
+# Excepciones
 
-6. ¿Cuáles son las ventajas y desventajas de la memoria dinámica en comparación con la
-memoria estática?
-> - La memoria dinámica permite ajustar el tamaño de las estructuras de datos mientras el programa está en funcionamiento, ofreciendo más flexibilidad que la memoria estática, cuyo tamaño y estructura se fijan al compilar y no se pueden cambiar después. Pero, usar memoria dinámica da más trabajo, ya que se debe asegurar de liberar la memoria adecuadamente para evitar el desperdicio de recursos, y pueda ralentizar el programa. Por otro lado, la memoria estática es más rápida y fácil de manejar.
+### 4. Manejo de Excepciones
+> En C++, el manejo de excepciones se realiza a través de tres bloques de código:
+> - `try`: Se utiliza para señalar un bloque de código en el que pueden ocurrir excepciones.
+> - `throw`: Se emplea para lanzar una excepción cuando se detecta un error.
+> - `catch`: Se usa para capturar y manejar las excepciones lanzadas en el bloque `try`.
 
-7. Explique qué es un árbol binario y cuáles son sus principales características.
-> - Un árbol binario es una estructura de datos en forma de árbol en la que cada nodo padre puede tener como máximo dos hijos. Cada nodo de un árbol binario consta de tres elementos: datos, dirección del hijo izquierdo y dirección del hijo derecho.
+### 5. Excepciones Estándar
+> C++ ofrece varias excepciones estándar, como:
+> - `invalid_argument`: Útil cuando un argumento no válido es pasado a una función.
+> - `runtime_error`: Adecuada para errores detectados durante el tiempo de ejecución, como una división por cero.
+> - `out_of_range`: Se utiliza cuando un elemento se intenta acceder fuera del rango válido, por ejemplo, en un vector.
 
-8. ¿Qué es una cola (queue) y en qué situaciones se utiliza comúnmente?
-> - Una cola (queue) es una estructura de datos que funciona como la fila en una tienda: el primero que llega es el primero en ser atendido. Esto se conoce como (primero en entrar, primero en salir). Las colas se usan en situaciones donde es importante mantener el orden de llegada, como en el manejo de tareas que deben procesarse en el orden que llegaron, por ejemplo, en la impresión de documentos o en el manejo de la espera de los usuarios en un servicio en línea.
+### 6. Política de Manejo de Excepciones
+> Una política de manejo de excepciones es un conjunto de prácticas que guían cómo se deben manejar las excepciones en un proyecto de software. Es crucial para desarrollar aplicaciones robustas, ya que define cómo se capturan y gestionan los errores para evitar fallos en tiempo de ejecución.
 
-9. ¿Cuál es la diferencia entre una cola (queue y una pila (stack))?
-> - La principal diferencia entre una queue y un stack es el orden en el que se añaden y se sacan los datos. En una cola, el primer elemento que se añade es también el primero en ser sacado, siguiendo la regla del (primero en entrar, primero en salir). En cambio, en una pila, el último elemento que se añade es el primero en ser sacado, lo cual se conoce como (último en entrar, primero en salir). Ambas estructuras organizan los datos en orden, pero de maneras contrarias.
+### 7. Noexcept
+> La palabra clave `noexcept` en C++ indica que una función no va a lanzar excepciones, ayudando al compilador a optimizar el rendimiento. Su sintaxis es la siguiente:
+> ```cpp
+> void func() noexcept {
+>     // Código de la función
+> }
+> ```
 
-10. Describe cómo funciona el algoritmo de inserción (insert) en una tabla hash.
-> - En una tabla hash, cuando se inserta un nuevo dato, primero se utiliza una función hash que transforma la entrada en una clave numérica. Esta clave numérica, después de aplicar un método para ajustarla al tamaño de la tabla, determina el índice en el que se debe guardar el dato dentro de la tabla. Sin embargo, puede ocurrir que dos entradas diferentes produzcan el mismo índice, conocido como colisión. Para manejar estas colisiones, se puede utilizar una de varias estrategias, como enlazar una lista dentro de cada índice de la tabla, donde cada nuevo elemento que colisiona se añade a la lista. Este método permite que las inserciones sean generalmente muy rápidas, típicamente en tiempo constante O(1), y facilita la búsqueda eficiente de datos utilizando la clave de entrada.
+### 8. std::logic_error vs. std::runtime_error
+> `std::logic_error` se utiliza para errores que pueden detectarse durante la revisión del código, como argumentos inválidos. `std::runtime_error` se usa para errores que solo se pueden detectar durante la ejecución del programa, como fallos de hardware o errores de división por cero.
 
-11. ¿Qué es la función de dispersión (hash function) y por qué es importante en las tablas
-hash?
-> - Una función hash, es un algoritmo que toma un conjunto de datos de entrada (como una clave) y los transforma en un número que representa una posición en una tabla hash. La calidad de una función hash es importante porque determina cómo se distribuyen los datos a lo largo de la tabla, lo cual afecta directamente la eficiencia de las operaciones de búsqueda, inserción y eliminación.
-La importancia de una buena función de dispersión en las tablas hash  esta en su capacidad para minimizar las colisiones. Menos colisiones significan un acceso más rápido a los datos y un mejor rendimiento general del sistema de almacenamiento. Por ello, una función hash debe ser rápida de calcular y capaz de distribuir uniformemente las entradas.
+### 9. ¿Qué ocurre cuando una excepción no es capturada?
+> Si una excepción lanzada no es capturada, el programa termina inmediatamente, lo que puede resultar en la pérdida de datos y otros comportamientos inesperados.
 
+# STL (Standard Template Library)
 
-12. ¿Cuál es la complejidad temporal promedio de búsqueda en una tabla hash bien implementada?
-> - Tiene una complejidad constante de O(1)
+### 10. Contenedores STL
+> Algunos de los contenedores proporcionados por la STL incluyen:
+> - `vector`: Ideal para almacenar datos dinámicamente.
+> - `deque`: Utilizado en aplicaciones que requieren acceso rápido desde ambos extremos.
+> - `set`: Perfecto para almacenar elementos únicos en orden.
+> - `multimap`: Útil en aplicaciones que necesitan asociar claves con múltiples valores.
+> - `list`: Adecuado para operaciones que requieren inserciones y eliminaciones frecuentes.
 
-13. Explica cómo se realiza la operación de inserción (push) en una pila (stack).
-> - La operación de inserción, o push, en una pila se puede comparar con apilar platos uno encima de otro. Cada vez que se añade un nuevo plato (elemento), se coloca en la parte superior de la pila. Este elemento se convierte en el primero que se retirará cuando se realice la próxima extracción o pop. Este proceso es directo: el último elemento que se añade es el primero en salir, siguiendo la regla de último en entrar, primero en salir.
+### 11. Iteradores en STL
+> Los iteradores son similares a los punteros y permiten recorrer los elementos de un contenedor en STL. Cada contenedor ofrece iteradores que se pueden usar para acceder a sus elementos de manera secuencial.
 
-14. ¿Cuál es la complejidad temporal de las operaciones de apilar (push) y desapilar (pop)
-en una pila?
-> - Ambas operaciones, apilar (push) y desapilar (pop) en una pila, tienen una complejidad temporal de O(1). Esto se debe a que ambas manipulan siempre el último elemento del stack.
+### 12. Algoritmos STL
+> Algunos algoritmos comunes incluyen:
+> - `binary search`: Para buscar eficientemente en una secuencia ordenada.
+> - `reverse`: Para invertir el orden de los elementos en un contenedor.
+> - `sort`: Para ordenar los elementos en un rango especificado.
 
-15. Describe cómo funciona una lista enlazada y cuáles son sus ventajas y desventajas.
-> - Una lista enlazada es una estructura de datos compuesta por nodos, donde cada nodo contiene datos y una referencia a la dirección del siguiente nodo. Esta estructura ofrece varias ventajas, como la facilidad para insertar o eliminar nodos, lo que permite que estas operaciones se realicen de manera eficiente sin necesidad de reorganizar toda la estructura. Sin embargo, también presenta desventajas, como un acceso secuencial que puede resultar lento para listas grandes, ya que requiere recorrer la lista desde el principio para acceder a elementos específicos. Además, cada nodo requiere espacio adicional para almacenar la referencia del siguiente nodo, lo que implica un mayor consumo de memoria.
-
-
-16. ¿Qué es un nodo en una lista enlazada y qué contiene?
-> - Un nodo en una lista enlazada es un elemento importante de esta estructura (es la base), que actúa como punto de conexión con otro nodo. Contiene información, o datos, y además incluye la dirección del próximo nodo, permitiendo así la secuencia enlazada entre los elementos de la lista.
-
-
-17. ¿Cuál es la diferencia entre una lista enlazada simple y una lista enlazada doblemente
-enlazada?
-> - La principal diferencia entre una lista enlazada simple y una doblemente enlazas esta en la estructura de sus nodos. En la lista enlazada simple, cada nodo contiene los datos y la dirección del siguiente nodo. En cambio, en una lista enlazada doblemente, cada nodo incluye los datos, la dirección del siguiente nodo y también la dirección del nodo anterior, permitiendo recorridos en ambas direcciones.
-
-18. ¿Cómo se realiza la eliminación (delete) de un nodo en una lista enlazada?
-> - Para eliminar un nodo en una lista enlazada, primero se debe considerar si el nodo fue creado dinámicamente. Dependiendo de su posición, el proceso varía:
-Si el nodo a eliminar es el primero, simplemente se reasigna el nodo cabeza (head) al siguiente nodo en la lista.
-Si el nodo no es el primero, se ajusta la conexión del nodo anterior para que apunte directamente al nodo siguiente del que se va a eliminar.
-En ambos casos, después de reajustar las referencias, es importante liberar la memoria ocupada por el nodo que se está eliminando.
-
-19. Explica cómo funciona el algoritmo de recorrido (traversal) en un árbol binario.
-> - El algoritmo de recorrido en un árbol binario permite visitar todos los nodos del árbol. Existen varios métodos de recorrido, cada uno con un orden específico para acceder a los nodos.
->   - Los tres principales son:
->     - Preorden (Preorder Traversal): En este método, primero se visita la raíz del árbol, luego se recorre el subárbol izquierdo, y finalmente el subárbol derecho. 
->     - Inorden (Inorder Traversal): Se comienza recorriendo el subárbol izquierdo, luego se visita la raíz, y finalmente el subárbol derecho.
->     - Los algoritmos deberían ser más eficaces entre las diversas formas de resolver un problema.
->     - Postorden (Postorder Traversal): Primero se explora el subárbol izquierdo, luego el derecho, y por último la raíz. 
-
-
-20. ¿Cuál es la complejidad temporal del recorrido en preorden, en orden y en postorden
-en un árbol binario balanceado?
-> - La complejidad temporal de los recorridos en preorden, en orden y en postorden en un árbol es O(n) para cada uno. Esto se debe a que cada nodo del árbol es visitado exactamente una vez durante el recorrido transversal.
-
-21. Explique la diferencia entre la notación Big O (O) y la notación Omega () en el análisis
-de la complejidad temporal de los algoritmos. Proporciona un ejemplo de un algoritmo
-y determina su complejidad temporal utilizando ambas notaciones Big O y Omega.
-> - La notación Big O (O) y la notación Omega (Ω) son métodos para describir los límites de tiempo de ejecución de un algoritmo. Big O indica el máximo tiempo que un algoritmo podría tomar, el peor caso. Omega muestra el tiempo mínimo necesario, el mejor caso. Por ejemplo, en la búsqueda lineal, la complejidad Big O es O(n) porque en el peor caso se revisa cada elemento, mientras que la complejidad Omega es Ω(1), ocurriendo cuando el primer elemento es el buscado.
+### 13. Algoritmos Personalizados
+> Se pueden crear algoritmos personalizados en STL pasando una función personalizada como argumento a un algoritmo. Esto permite modificar el comportamiento del algoritmo para adaptarlo a necesidades específicas.
 
 ## Guía Básica de Markdown para README.md
 
