@@ -51,21 +51,27 @@ void showMenu() {
 
 template <typename T>
 void establecerTamanioYValores(Matriz<T>& matriz1, Matriz<T>& matriz2) {
-    int filas1, columnas1, filas2, columnas2;
+    try {
+        int filas1, columnas1, filas2, columnas2;
 
-    std::cout << "Ingrese el número de filas de la primera matriz: ";
-    filas1 = obtenerEntero();
-    std::cout << "Ingrese el número de columnas de la primera matriz: ";
-    columnas1 = obtenerEntero();
-    matriz1.setDimensiones(filas1, columnas1);
-    matriz1.llenarMatriz();
+        std::cout << "Ingrese el número de filas de la primera matriz: ";
+        filas1 = obtenerEntero();
+        std::cout << "Ingrese el número de columnas de la primera matriz: ";
+        columnas1 = obtenerEntero();
+        matriz1.setDimensiones(filas1, columnas1);
+        matriz1.llenarMatriz();
 
-    std::cout << "Ingrese el número de filas de la segunda matriz: ";
-    filas2 = obtenerEntero();
-    std::cout << "Ingrese el número de columnas de la segunda matriz: ";
-    columnas2 = obtenerEntero();
-    matriz2.setDimensiones(filas2, columnas2);
-    matriz2.llenarMatriz();
+        std::cout << "Ingrese el número de filas de la segunda matriz: ";
+        filas2 = obtenerEntero();
+        std::cout << "Ingrese el número de columnas de la segunda matriz: ";
+        columnas2 = obtenerEntero();
+        matriz2.setDimensiones(filas2, columnas2);
+        matriz2.llenarMatriz();
+
+        std::cout << "Tamaño de las matrices establecido.\n";
+    } catch (const std::invalid_argument& e) {
+        std::cout << "Error: " << e.what() << "\n";
+    }
 }
 
 int main() {
@@ -96,7 +102,6 @@ int main() {
                 }
                 matricesSet = true;
                 matricesInitialized = true;
-                std::cout << "Tamaño de las matrices establecido.\n";
                 break;
 
             case 2: // Elegir el tipo de datos
@@ -157,22 +162,26 @@ int main() {
                 break;
 
             case 4: // Generar datos aleatorios
-                if (matricesSet) {
-                    if (dataType == DataType::Int) {
-                        matrizInt1.generarDatosAleatorios();
-                        matrizInt2.generarDatosAleatorios();
-                    } else if (dataType == DataType::Float) {
-                        matrizFloat1.generarDatosAleatorios();
-                        matrizFloat2.generarDatosAleatorios();
-                    } else if (dataType == DataType::Complex) {
-                        matrizComplex1.generarDatosAleatorios();
-                        matrizComplex2.generarDatosAleatorios();
-                    }
+                try {
+                    if (matricesSet) {
+                        if (dataType == DataType::Int) {
+                            matrizInt1.generarDatosAleatorios();
+                            matrizInt2.generarDatosAleatorios();
+                        } else if (dataType == DataType::Float) {
+                            matrizFloat1.generarDatosAleatorios();
+                            matrizFloat2.generarDatosAleatorios();
+                        } else if (dataType == DataType::Complex) {
+                            matrizComplex1.generarDatosAleatorios();
+                            matrizComplex2.generarDatosAleatorios();
+                        }
 
-                    matricesInitialized = true;
-                    std::cout << "Datos aleatorios generados para las matrices.\n";
-                } else {
-                    std::cout << "Establezca primero el tamaño de las matrices.\n";
+                        matricesInitialized = true;
+                        std::cout << "Datos aleatorios generados para las matrices.\n";
+                    } else {
+                        std::cout << "Establezca primero el tamaño de las matrices.\n";
+                    }
+                } catch (const std::invalid_argument& e) {
+                    std::cout << "Error: " << e.what() << "\n";
                 }
                 break;
 
@@ -201,8 +210,8 @@ int main() {
                 break;
 
             case 6: // Ejecutar operación
-                if (matricesInitialized) {
-                    try {
+                try {
+                    if (matricesInitialized) {
                         if (operation == Operation::Add) {
                             if (dataType == DataType::Int) {
                                 resultInt = OperacionesBasicas<int>::suma(matrizInt1, matrizInt2);
@@ -248,11 +257,13 @@ int main() {
                         } else {
                             std::cout << "Seleccione una operación válida antes de ejecutarla.\n";
                         }
-                    } catch (std::runtime_error& e) {
-                        std::cout << "Error: " << e.what() << "\n";
+                    } else {
+                        std::cout << "Primero llene las matrices.\n";
                     }
-                } else {
-                    std::cout << "Primero llene las matrices.\n";
+                } catch (const std::invalid_argument& e) {
+                    std::cout << "Error: " << e.what() << "\n";
+                } catch (const std::runtime_error& e) {
+                    std::cout << "Error: " << e.what() << "\n";
                 }
                 break;
 
