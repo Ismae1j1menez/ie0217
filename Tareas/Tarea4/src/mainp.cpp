@@ -1,3 +1,32 @@
+//MIT License
+//
+//Copyright (c) 2024 Ismael Jiménez Carballo
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
+/**
+ * @file main.cpp
+ * @brief Programa principal para operaciones básicas con matrices.
+ * 
+ * Este programa permite realizar operaciones aritméticas básicas (suma, resta, multiplicación)
+ * con matrices utilizando diferentes tipos de datos (enteros, flotantes, complejos).
+ */
 #include <iostream>
 #include <vector>
 #include <stdexcept>
@@ -23,6 +52,11 @@ enum class Operation {
     None
 };
 
+/**
+ * @brief Solicita al usuario un número entero válido.
+ * 
+ * @return int Número entero introducido por el usuario.
+ */
 int obtenerEntero() {
     int num;
     while (true) {
@@ -38,6 +72,9 @@ int obtenerEntero() {
     }
 }
 
+/**
+ * @brief Muestra el menú principal con las opciones disponibles.
+ */
 void showMenu() {
     std::cout << "\nMenú\n";
     std::cout << "1. Establecer tamaño de ambas matrices y sus respectivos valores\n";
@@ -49,6 +86,13 @@ void showMenu() {
     std::cout << "7. Finalizar el programa\n";
 }
 
+/**
+ * @brief Establece el tamaño y los valores de las matrices.
+ * 
+ * @tparam T Tipo de dato de los elementos de la matriz.
+ * @param matriz1 Primera matriz a inicializar.
+ * @param matriz2 Segunda matriz a inicializar.
+ */
 template <typename T>
 void establecerTamanioYValores(Matriz<T>& matriz1, Matriz<T>& matriz2) {
     try {
@@ -74,6 +118,13 @@ void establecerTamanioYValores(Matriz<T>& matriz1, Matriz<T>& matriz2) {
     }
 }
 
+/**
+ * @brief Función principal del programa.
+ * 
+ * Controla la lógica del menú y ejecuta las operaciones aritméticas seleccionadas.
+ * 
+ * @return int Código de salida del programa.
+ */
 int main() {
     DataType dataType = DataType::Int;
     Operation operation = Operation::None;
