@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Operacionesbasicas.cpp"
-#include "Validacion.cpp"
+#include "Validacion.hpp"
 #include <complex>
 
 int main() {

@@ -6,8 +6,9 @@
 #include <complex>
 #include <cstdlib>
 #include <ctime>
-#include "Operacionesbasicas.cpp"
-#include "Validacion.cpp"
+#include "Operacionesbasicas.hpp"
+#include "Validacion.hpp"
+#include "Matriz.hpp"
 
 enum class DataType {
     Int,
