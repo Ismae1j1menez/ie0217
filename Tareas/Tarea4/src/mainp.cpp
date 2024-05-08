@@ -23,6 +23,21 @@ enum class Operation {
     None
 };
 
+int obtenerEntero() {
+    int num;
+    while (true) {
+        std::cin >> num;
+        if (std::cin.fail()) {
+            std::cout << "Entrada inválida. Introduzca un número entero válido: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return num;
+        }
+    }
+}
+
 void showMenu() {
     std::cout << "\nMenú\n";
     std::cout << "1. Establecer tamaño de ambas matrices y sus respectivos valores\n";
@@ -34,8 +49,26 @@ void showMenu() {
     std::cout << "7. Finalizar el programa\n";
 }
 
+template <typename T>
+void establecerTamanioYValores(Matriz<T>& matriz1, Matriz<T>& matriz2) {
+    int filas1, columnas1, filas2, columnas2;
+
+    std::cout << "Ingrese el número de filas de la primera matriz: ";
+    filas1 = obtenerEntero();
+    std::cout << "Ingrese el número de columnas de la primera matriz: ";
+    columnas1 = obtenerEntero();
+    matriz1.setDimensiones(filas1, columnas1);
+    matriz1.llenarMatriz();
+
+    std::cout << "Ingrese el número de filas de la segunda matriz: ";
+    filas2 = obtenerEntero();
+    std::cout << "Ingrese el número de columnas de la segunda matriz: ";
+    columnas2 = obtenerEntero();
+    matriz2.setDimensiones(filas2, columnas2);
+    matriz2.llenarMatriz();
+}
+
 int main() {
-    int filas = 0, columnas = 0;
     DataType dataType = DataType::Int;
     Operation operation = Operation::None;
     bool matricesSet = false;
@@ -50,35 +83,20 @@ int main() {
         showMenu();
         int choice;
         std::cout << "\nIngrese una opción: ";
-        std::cin >> choice;
-
+        choice = obtenerEntero();
+        
         switch (choice) {
-            case 1: // Establecer tamaño de las matrices
-                std::cout << "\nIngrese el número de filas: ";
-                std::cin >> filas;
-                std::cout << "Ingrese el número de columnas: ";
-                std::cin >> columnas;
-
-                if (filas > 0 && columnas > 0) {
-                    if (dataType == DataType::Int) {
-                        matrizInt1.setDimensiones(filas, columnas);
-                        matrizInt2.setDimensiones(filas, columnas);
-                        resultInt.setDimensiones(filas, columnas);
-                    } else if (dataType == DataType::Float) {
-                        matrizFloat1.setDimensiones(filas, columnas);
-                        matrizFloat2.setDimensiones(filas, columnas);
-                        resultFloat.setDimensiones(filas, columnas);
-                    } else if (dataType == DataType::Complex) {
-                        matrizComplex1.setDimensiones(filas, columnas);
-                        matrizComplex2.setDimensiones(filas, columnas);
-                        resultComplex.setDimensiones(filas, columnas);
-                    }
-                    matricesSet = true;
-                    matricesInitialized = false;
-                    std::cout << "Tamaño de las matrices establecido.\n";
-                } else {
-                    std::cout << "Las dimensiones deben ser mayores que cero.\n";
+            case 1: // Establecer tamaño de las matrices y sus respectivos valores
+                if (dataType == DataType::Int) {
+                    establecerTamanioYValores(matrizInt1, matrizInt2);
+                } else if (dataType == DataType::Float) {
+                    establecerTamanioYValores(matrizFloat1, matrizFloat2);
+                } else if (dataType == DataType::Complex) {
+                    establecerTamanioYValores(matrizComplex1, matrizComplex2);
                 }
+                matricesSet = true;
+                matricesInitialized = true;
+                std::cout << "Tamaño de las matrices establecido.\n";
                 break;
 
             case 2: // Elegir el tipo de datos
@@ -87,7 +105,7 @@ int main() {
                 std::cout << "2. Flotantes\n";
                 std::cout << "3. Complejos\n";
                 int dataTypeChoice;
-                std::cin >> dataTypeChoice;
+                dataTypeChoice = obtenerEntero();
 
                 switch (dataTypeChoice) {
                     case 1:
@@ -116,7 +134,7 @@ int main() {
                 std::cout << "2. Restar\n";
                 std::cout << "3. Multiplicar\n";
                 int operationChoice;
-                std::cin >> operationChoice;
+                operationChoice = obtenerEntero();
 
                 switch (operationChoice) {
                     case 1:

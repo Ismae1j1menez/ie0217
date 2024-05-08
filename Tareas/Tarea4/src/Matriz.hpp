@@ -10,10 +10,8 @@
 #include <random>
 
 template<typename T>
-// Inicia la clase matriz, la cual inicializa con filas y columnas una matriz, agrega datos por el usuario
 class Matriz {
 private:
-    // Contenedor STL, vector
     std::vector<std::vector<T>> data;
     int filas;
     int columnas;

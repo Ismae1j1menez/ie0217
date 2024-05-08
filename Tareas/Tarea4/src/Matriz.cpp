@@ -8,7 +8,7 @@ Matriz<T>::Matriz(int filas, int columnas, const T& valorInicial) {
     }
     this->filas = filas;
     this->columnas = columnas;
-    // Inicializa la matriz con vector
+    // Inicializa la matriz con un vector
     data = std::vector<std::vector<T>>(filas, std::vector<T>(columnas, valorInicial));
 }
 
@@ -36,8 +36,17 @@ void Matriz<T>::llenarMatriz() {
     std::cout << "Ingrese los elementos de la matriz:" << std::endl;
     for (int i = 0; i < filas; ++i) {
         for (int j = 0; j < columnas; ++j) {
-            std::cout << "Elemento [" << i << "][" << j << "]: ";
-            std::cin >> data[i][j];
+            if constexpr (std::is_same<T, std::complex<double>>::value || std::is_same<T, std::complex<float>>::value) {
+                double real, imag;
+                std::cout << "Elemento [" << i << "][" << j << "] (parte real): ";
+                std::cin >> real;
+                std::cout << "Elemento [" << i << "][" << j << "] (parte imaginaria): ";
+                std::cin >> imag;
+                data[i][j] = {static_cast<typename T::value_type>(real), static_cast<typename T::value_type>(imag)};
+            } else {
+                std::cout << "Elemento [" << i << "][" << j << "]: ";
+                std::cin >> data[i][j];
+            }
         }
     }
 }
@@ -47,16 +56,22 @@ template<typename T>
 void Matriz<T>::generarDatosAleatorios() {
     std::random_device rd;  // Dispositivo de generación de números aleatorios
     std::mt19937 gen(rd()); // Motor de generación de números aleatorios basado en Mersenne Twister
+
     if constexpr (std::is_same<T, int>::value) {
         std::uniform_int_distribution<int> dist(1, 100);  // Rango para enteros
         for (auto& fila : data)
             for (auto& elem : fila)
                 elem = dist(gen);
     } else if constexpr (std::is_same<T, float>::value) {
-        std::uniform_real_distribution<float> dist(1.0, 100.0);  // Rango para flotantes
+        std::uniform_real_distribution<float> dist(1.0f, 100.0f);  // Rango para flotantes
         for (auto& fila : data)
             for (auto& elem : fila)
                 elem = dist(gen);
+    } else if constexpr (std::is_same<T, std::complex<float>>::value) {
+        std::uniform_real_distribution<float> dist(1.0f, 100.0f);  // Rango para parte real e imaginaria
+        for (auto& fila : data)
+            for (auto& elem : fila)
+                elem = {dist(gen), dist(gen)};
     } else if constexpr (std::is_same<T, std::complex<double>>::value) {
         std::uniform_real_distribution<double> dist(1.0, 100.0);  // Rango para parte real e imaginaria
         for (auto& fila : data)
@@ -68,37 +83,39 @@ void Matriz<T>::generarDatosAleatorios() {
 // Método para imprimir la matriz
 template<typename T>
 void Matriz<T>::imprimirMatriz() const {
-    int width = 10;  // Ajusta el ancho para una mejor visualización
+    int width = 12;  // Ajusta el ancho para una mejor visualización, incrementado para complejos
     std::cout << "\n+" << std::string(columnas * width, '-') << "+\n";
     for (const auto& fila : data) {
         std::cout << "|";
         for (const auto& elemento : fila) {
-            if constexpr (std::is_same<T, std::complex<double>>::value) {
-                std::cout << std::setw(width - 1) << elemento.real() << (elemento.imag() < 0 ? "" : "+") << elemento.imag() << "j";
+            if constexpr (std::is_same<T, std::complex<float>>::value || std::is_same<T, std::complex<double>>::value) {
+                // Ajuste del formato para números complejos
+                std::cout << std::right << std::setw(5) << elemento.real()
+                          << std::showpos << elemento.imag() << std::noshowpos << "i" << std::setw(2) << "|";
             } else {
-                std::cout << std::setw(width) << elemento;
+                std::cout << std::right << std::setw(width - 2) << elemento << "|";
             }
         }
-        std::cout << "|\n";
+        std::cout << "\n";
     }
     std::cout << "+" << std::string(columnas * width, '-') << "+\n";
 }
 
 // Getters para acceder a las propiedades privadas
-// Es para obtener datos como filas, columnas, data...
 template<typename T>
 int Matriz<T>::getFilas() const { return filas; }
+
 template<typename T>
 int Matriz<T>::getColumnas() const { return columnas; }
+
 template<typename T>
 std::vector<std::vector<T>>& Matriz<T>::getData() { return data; }
+
 template<typename T>
 const std::vector<std::vector<T>>& Matriz<T>::getData() const { return data; }
 
+// Instanciaciones explícitas de las plantillas
 template class Matriz<int>;
 template class Matriz<float>;
 template class Matriz<std::complex<float>>;
 template class Matriz<std::complex<double>>;
-
-
-
