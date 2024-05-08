@@ -34,4 +34,4 @@ Estos programas se pueden compilar utilizando el objetivo `P1`:
 
 - regex.cpp
 
-Las carpetas biblioteca y estudiante se compilan con el makefile dentro, por lo tanto se compilan dentro de la carpeta con el comando make.
+Las carpetas biblioteca y estudiante se compilan con el makefile dentro, por lo tanto se utiliza el comando make.
