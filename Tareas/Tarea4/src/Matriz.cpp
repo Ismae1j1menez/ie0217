@@ -97,6 +97,7 @@ const std::vector<std::vector<T>>& Matriz<T>::getData() const { return data; }
 
 template class Matriz<int>;
 template class Matriz<float>;
+template class Matriz<std::complex<float>>;
 template class Matriz<std::complex<double>>;
 
 

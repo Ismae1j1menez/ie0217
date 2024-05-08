@@ -18,6 +18,8 @@ void ValidadorDeEntrada<T>::validarDimensiones(int filas, int columnas) {
     }
 }
 
-
+template class ValidadorDeEntrada<int>;
+template class ValidadorDeEntrada<float>;
+template class ValidadorDeEntrada<std::complex<float>>;
 
 

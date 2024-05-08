@@ -67,3 +67,6 @@ Matriz<T> OperacionesBasicas<T>::multiplicacion(const Matriz<T>& a, const Matriz
     return resultado;
 }
 
+template class OperacionesBasicas<int>;
+template class OperacionesBasicas<float>;
+template class OperacionesBasicas<std::complex<float>>;
