@@ -64,7 +64,7 @@ Finalmente, la impresión de todos los contactos está disponible siempre que ha
 
 
 ## Parte Teórica
-# Templates
+## Templates
 
 ### 1. Definición de Templates
 > Los templates en C++ son herramientas que permiten a los programadores especificar el tipo de datos como un parámetro. Esto facilita la reutilización de código, ya que no es necesario escribir múltiples versiones de una función o clase para diferentes tipos de datos. Por ejemplo, se puede definir una función `add` que sume dos números de cualquier tipo:
@@ -89,7 +89,7 @@ Finalmente, la impresión de todos los contactos está disponible siempre que ha
 ### 3. Plantillas de Clases
 > Las plantillas de clases en C++ permiten definir clases donde los tipos de sus atributos y métodos pueden ser especificados como parámetros. Esto facilita el uso del mismo código para trabajar con diferentes tipos de datos, promoviendo la reutilización y flexibilidad del código.
 
-# Excepciones
+## Excepciones
 
 ### 4. Manejo de Excepciones
 > En C++, el manejo de excepciones se realiza a través de tres bloques de código:
@@ -120,7 +120,7 @@ Finalmente, la impresión de todos los contactos está disponible siempre que ha
 ### 9. ¿Qué ocurre cuando una excepción no es capturada?
 > Si una excepción lanzada no es capturada, el programa termina inmediatamente, lo que puede resultar en la pérdida de datos y otros comportamientos inesperados.
 
-# STL (Standard Template Library)
+## STL (Standard Template Library)
 
 ### 10. Contenedores STL
 > Algunos de los contenedores proporcionados por la STL incluyen:
