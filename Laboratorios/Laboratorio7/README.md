@@ -6,7 +6,7 @@ Este README contiene los comandos para la compilación y ejecución del laborato
 
 Para compilar y ejecutar los programas, se pueden utilizar los siguientes comandos:
 
-- Para compilar se debe compilar desde la carptera Laboratorio7 con el comando:
+- Para compilar se debe hacer desde la carptera Laboratorio7 con el comando:
 ```
 make
 ```
@@ -16,7 +16,7 @@ make
 ./bin/textprocessor -f data/input.txt -o data/output.txt -search "foo" -replace "bar"
 ```
 
-- Para limiar la carpeta bin:
+- Para limpiar la carpeta bin:
 ```
 make clean
 ```
