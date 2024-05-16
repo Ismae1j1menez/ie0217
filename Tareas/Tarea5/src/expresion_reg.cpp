@@ -6,37 +6,63 @@
 EmailValidationException::EmailValidationException(const std::string& msg) : runtime_error(msg) {}
 
 
-// Metodo de validar correo
 void ValidadorEmail::validarCorreo(const std::string& email) {
-    // Si son iguales entonces no se encontro el @
-    if (email.find('@') == std::string::npos) {
+    // Si no se encuentra el '@', lanzar una excepción
+    size_t atPosition = email.find('@');
+    if (atPosition == std::string::npos) {
         throw EmailValidationException("El correo debe contener '@'.");
     }
     
-    // Busca la posicion del @
-    size_t atPosition = email.find('@');
-    // Asigna el nombre que es a partir del inicio a @
+    // Dividir la cadena en nombre y resto (dominio + extensión)
     std::string name = email.substr(0, atPosition);
-    // Asigna el resto del @ al final 
     std::string remainder = email.substr(atPosition + 1);
-    // Separa el el dominio con la extencion
-    size_t dotPosition = remainder.rfind('.');
     
-    // En caso de que sean iguales es que no se encontro el punto en el correo
-    if (dotPosition == std::string::npos) {
+    // Buscar el último punto en el resto (dominio + extensión)
+    size_t lastDotPosition = remainder.rfind('.');
+    
+    // Si no se encuentra el punto, lanzar una excepción
+    if (lastDotPosition == std::string::npos) {
         throw EmailValidationException("El correo debe contener un punto en el dominio.");
     }
     
-    // Ingresa el dominio que es del punto luego del @ al punto
-    std::string domain = remainder.substr(0, dotPosition);
-    // Ingresa el punto al ginal en extension
-    std::string extension = remainder.substr(dotPosition + 1);
+    // Extraer el dominio y la extensión
+    std::string domain = remainder.substr(0, lastDotPosition);
+    std::string extension;
+
+    // Preguntar al usuario si la extensión es compuesta
+    std::cout << "¿La extensión es compuesta? (Ingrese 1 para Sí o 2 para No): ";
+    std::string respuesta;
+    std::cin >> respuesta;
     
-    // Aqui llama a los metodo para verificar el regex de nombre, dominio y extension
+    // Lanzar una excepción si la respuesta no es 1 o 2
+    if (respuesta != "1" && respuesta != "2") {
+        throw EmailValidationException("Respuesta no válida. Por favor, responda con 1 para Sí o 2 para No.");
+    }
+
+    // Si la respuesta es si, buscar el segundo punto desde el final
+    if (respuesta == "1") {
+        size_t secondLastDotPosition = remainder.rfind('.', lastDotPosition - 1);
+        if (secondLastDotPosition != std::string::npos) {
+            domain = remainder.substr(0, secondLastDotPosition);
+            extension = remainder.substr(secondLastDotPosition + 1);
+        }
+    } else {
+        // Si no, la extensión es desde el último punto
+        extension = remainder.substr(lastDotPosition + 1);
+    }
+
+
+    // Imprimir los componentes para verificar
+    std::cout << "=============================================" << std::endl;
+    std::cout << "Nombre:    " << name << std::endl;
+    std::cout << "Dominio:   " << domain << std::endl;
+    std::cout << "Extensión: " << extension << std::endl;
+    std::cout << "=============================================" << std::endl;
+
     validarNombre(name);
     validarDominio(domain);
-    validarExtension(extension);
 }
+
 
 // Validar nombre 
 void ValidadorEmail::validarNombre(const std::string& name) {
