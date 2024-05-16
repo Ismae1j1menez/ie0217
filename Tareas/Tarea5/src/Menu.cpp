@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include <limits>
+
 
 // Menu donde se le da instrucciones al usuario que ingresar
 void printMenu() {
@@ -32,6 +34,8 @@ int getValidMenuOption() {
         } catch (const std::out_of_range& oor) {
             std::cout << "Número demasiado grande, por favor intente de nuevo." << std::endl;
         }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 

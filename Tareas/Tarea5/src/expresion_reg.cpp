@@ -2,6 +2,7 @@
 #include <regex>
 #include <stdexcept>
 #include "expresion_reg.hpp"
+#include <limits>
 
 EmailValidationException::EmailValidationException(const std::string& msg) : runtime_error(msg) {}
 
@@ -33,6 +34,7 @@ void ValidadorEmail::validarCorreo(const std::string& email) {
     std::cout << "¿La extensión es compuesta? (Ingrese 1 para Sí o 2 para No): ";
     std::string respuesta;
     std::cin >> respuesta;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     
     // Lanzar una excepción si la respuesta no es 1 o 2
     if (respuesta != "1" && respuesta != "2") {
@@ -61,6 +63,7 @@ void ValidadorEmail::validarCorreo(const std::string& email) {
 
     validarNombre(name);
     validarDominio(domain);
+    validarExtension(extension);
 }
 
 
@@ -71,9 +74,33 @@ void ValidadorEmail::validarNombre(const std::string& name) {
     // No permite mas de 15 caracteres
     // No empieza o termina con punto, guion o guion bajo
     // Permite mayusculas, minusculas, numeros, puntos, guiones y guiones bajos
-    std::string nameFormat = R"(^[^\W_](?!.*[._\-!*?]{2})([a-zA-Z0-9._-]{1,15})[^\W_]$)";
+    std::string nameFormat = R"(^[^\W_](?!.*[._\-]{2})([a-zA-Z0-9._-]+)[^\W_]$)";
+    // Verifica si el nombre cumple con el regex general
     if (!std::regex_match(name, std::regex(nameFormat))) {
-        throw EmailValidationException("Error en el nombre: no cumple con los requisitos.");
+        // Verifica si el nombre comienza o termina con punto, guion o guion bajo
+        if (name.front() == '.' || name.front() == '-' || name.front() == '_' ||
+            name.back() == '.' || name.back() == '-' || name.back() == '_') {
+            throw EmailValidationException("Error en el nombre: no debe comenzar ni terminar con punto, guión o guión bajo.");
+        }
+
+        // Verifica si el nombre contiene dos caracteres especiales consecutivos
+        if (std::regex_search(name, std::regex(R"([._\-]{2})"))) {
+            throw EmailValidationException("Error en el nombre: contiene dos caracteres especiales consecutivos.");
+        }
+
+        // Si no se cumple ninguna condición específica anterior, lanzar error general
+        throw EmailValidationException("Error en el nombre: no cumple con los requisitos de formato.");
+    }
+    // Contar caracteres válidos excluyendo puntos, guiones y guiones bajos
+    int validCharCount = 0;
+    for (char c : name) {
+        if (c != '.' && c != '-' && c != '_') {
+            validCharCount++;
+        }
+    }
+    // Verifica si el nombre tiene más de 15 caracteres válidos
+    if (validCharCount > 15) {
+        throw EmailValidationException("Error en el nombre: contiene más de 15 caracteres válidos.");
     }
 }
 
@@ -82,9 +109,33 @@ void ValidadorEmail::validarDominio(const std::string& domain) {
     // No permite menos de 3 ni mas de 30 caracteres
     // No empieza ni termina con punto, guion o guion bajo
     // No permite el doble punto
-    std::string domainFormat = R"(^[^.-](?!.*[-.]{2})[\w.\w]([a-zA-Z0-9.-]{3,30})+[^.-]$)";
+    std::string domainFormat = R"(^[^.-](?!.*[-.]{2})[\w.\w]([a-zA-Z0-9.-]+)+[^.-]$)";
+    // Verifica si el dominio cumple con el regex general
     if (!std::regex_match(domain, std::regex(domainFormat))) {
-        throw EmailValidationException("Error en el dominio: no cumple con los requisitos.");
+        // Verifica si el dominio comienza o termina con punto o guion
+        if (domain.front() == '.' || domain.front() == '-' ||
+            domain.back() == '.' || domain.back() == '-') {
+            throw EmailValidationException("Error en el dominio: no debe comenzar ni terminar con punto o guión.");
+        }
+
+        // Verifica si el dominio contiene dos caracteres especiales consecutivos
+        if (std::regex_search(domain, std::regex(R"([-.]{2})"))) {
+            throw EmailValidationException("Error en el dominio: contiene dos caracteres especiales consecutivos.");
+        }
+
+        // Si no se cumple ninguna condición específica anterior, lanzar error general
+        throw EmailValidationException("Error en el dominio: no cumple con los requisitos de formato.");
+    }
+    // Contar caracteres válidos excluyendo puntos
+    int validCharCount = 0;
+    for (char c : domain) {
+        if (c != '.') {
+            validCharCount++;
+        }
+    }
+    // Verifica si el dominio tiene entre 3 y 30 caracteres válidos
+    if (validCharCount < 3 || validCharCount > 30) {
+        throw EmailValidationException("Error en el dominio: debe tener entre 3 y 30 caracteres válidos, excluyendo los puntos.");
     }
 }
 
@@ -93,8 +144,19 @@ void ValidadorEmail::validarExtension(const std::string& extension) {
     // Tiene de 2 a 6 letras
     // no se permiten numeros expeciales
     // Puedes ser compuesta
-    std::string extensionFormat = R"(^(?!.*\.\.)([a-zA-Z]{2,6}(\.[a-zA-Z]{2,6})*)$)";
+    std::string extensionFormat = R"(^(?!.*\.\.)([a-zA-Z.]{2,6}(\.[a-zA-Z]{2,6})*)$)";
     if (!std::regex_match(extension, std::regex(extensionFormat))) {
+        // Verificar si contiene números o caracteres especiales
+        if (std::regex_search(extension, std::regex("[^a-zA-Z.]"))) {
+            throw EmailValidationException("Error en la extensión: contiene números o caracteres especiales no permitidos.");
+        }
+
+        // Verificar si hay segmentos que no cumplen con la longitud de 2 a 6 letras
+        if (std::regex_search(extension, std::regex(R"([a-zA-Z]{1,1}|[a-zA-Z]{7,})"))) {
+            throw EmailValidationException("Error en la extensión: cada segmento debe tener entre 2 y 6 letras.");
+        }
+
+        // Si no se cumple ninguna de las condiciones específicas anteriores, lanzar un error general
         throw EmailValidationException("Error en la extensión: no cumple con los requisitos.");
     }
 }
