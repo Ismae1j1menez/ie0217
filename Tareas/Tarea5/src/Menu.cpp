@@ -46,26 +46,28 @@ void printMenu() {
 }
 
 // Es una funcion que valida la entrada del usario, principalmente que sea un 1 o 2
+// Usada para el menu
 int getValidMenuOption() {
-    std::string line;
-    int option = 0;
+    int option;
     while (true) {
-        printMenu();
-        std::getline(std::cin, line);
-        try {
-            option = std::stoi(line);
-            if (option == ValidarCorreo || option == Salir) {
-                return option;
-            } else {
-                std::cout << "Opción inválida, por favor intente de nuevo." << std::endl;
-            }
-        } catch (const std::invalid_argument& ia) {
-            std::cout << "Entrada inválida, por favor ingrese un número." << std::endl;
-        } catch (const std::out_of_range& oor) {
-            std::cout << "Número demasiado grande, por favor intente de nuevo." << std::endl;
+        std::cout << "=============================================" << std::endl;
+        std::cout << "Menú:" << std::endl;
+        std::cout << "1 - Validar dirección de correo electrónico" << std::endl;
+        std::cout << "2 - Salir" << std::endl;
+        std::cout << "=============================================" << std::endl;
+        std::cout << "Ingrese su opción: ";
+
+        std::cin >> option;
+
+        // Verificar si se ingresa o un 1 o el 2
+        if (std::cin.fail() || option < 1 || option > 2) {
+            std::cin.clear(); // limpia el buffer
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            std::cout << "Entrada inválida, por favor ingrese un número entre 1 y 2." << std::endl;
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            return option;
         }
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 

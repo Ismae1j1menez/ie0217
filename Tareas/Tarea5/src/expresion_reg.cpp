@@ -43,11 +43,11 @@ void ValidadorEmail::validarCorreo(const std::string& email) {
         throw EmailValidationException("El correo debe contener '@'.");
     }
     
-    // Dividir la cadena en nombre y resto (dominio + extensión)
+    // Dividir la cadena en nombre en lo demas (dominio + extensión)
     std::string name = email.substr(0, atPosition);
     std::string remainder = email.substr(atPosition + 1);
     
-    // Buscar el último punto en el resto (dominio + extensión)
+    // Buscar el último punto en lo demas (dominio + extensión)
     size_t lastDotPosition = remainder.rfind('.');
     
     // Si no se encuentra el punto, lanzar una excepción
@@ -83,7 +83,7 @@ void ValidadorEmail::validarCorreo(const std::string& email) {
     }
 
 
-    // Imprimir los componentes para verificar
+    // Imprimir los componentes para verificar la correcta separacion
     std::cout << "=============================================" << std::endl;
     std::cout << "Nombre:    " << name << std::endl;
     std::cout << "Dominio:   " << domain << std::endl;
