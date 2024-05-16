@@ -1,0 +1,11 @@
+digraph "Menu.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Menu.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Definiciones para el menú de la aplicación de validación de correos electrónicos."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip="Aplicación principal para la validación de correos electrónicos."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Menu.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_menu_8cpp.html",tooltip="Funciones del menú para la aplicación de validación de correos electrónicos."];
+}
