@@ -341,14 +341,14 @@ Este comando muestra los requisitos específicos para el curso 'Electrónica ind
 </p>
 
 ### Consultar una semestre especifico
-<p align="center">
-  <img src="https://i.imgur.com/edkENvK.png" alt="Consultar_cursoespecifico">
-</p>
 
 ```
 SELECT * FROM Cursos WHERE Semestre = 'I-2024';
 ```
 El comando selecciona y muestra todos los cursos que están programados para el semestre I-2024 en la tabla Cursos
+<p align="center">
+  <img src="https://i.imgur.com/edkENvK.png" alt="Consultar_cursoespecifico">
+</p>
 
 ### Consultar para listar los cursos que no son optativos
 ```
