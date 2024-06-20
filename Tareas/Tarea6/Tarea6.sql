@@ -201,6 +201,9 @@ JOIN Cursos c1
 ON r.RequisitoCursoID = c1.CursoID
 WHERE c.Nombre = 'Electrónica industrial';
 
+-- Contultar una semestre especifico
+SELECT * FROM Cursos WHERE Semestre = 'I-2024';
+
 -- Consultar para listar los cursos que no son optativos
 SELECT *
 FROM Cursos
