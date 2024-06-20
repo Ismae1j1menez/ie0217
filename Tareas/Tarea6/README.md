@@ -336,6 +336,16 @@ WHERE c.Nombre = 'Electrónica industrial';
 ```
 Este comando muestra los requisitos específicos para el curso 'Electrónica industrial', indicando qué otros cursos deben ser completados previamente.
 
+### Contultar una semestre especifico
+<p align="center">
+  <img src="https://i.imgur.com/edkENvK.png" alt="Consultar_cursoespecifico">
+</p>
+
+```
+SELECT * FROM Cursos WHERE Semestre = 'I-2024';
+```
+El comando selecciona y muestra todos los cursos que están programados para el semestre I-2024 en la tabla Cursos
+
 <p align="center">
   <img src="https://i.imgur.com/EX1Mly0.png" alt="Consultar_cursoespecifico">
 </p>
@@ -482,13 +492,3 @@ WHERE
 ```
     
 Este comando elimina específicamente los requisitos de dos cursos, ajustando las relaciones de dependencia en la estructura del plan de estudios.
-
-
-
-
-
-
-
-
-   
-   
