@@ -247,6 +247,241 @@ Este comando inserta descripciones y niveles de dificultad para cada curso en la
 
 
 
+### Agregar nuevos cursos inventados.
+```
+INSERT INTO Cursos (Sigla, Nombre, Semestre, Creditos) VALUES
+('IE-0628', 'Seguridad De La Información', 'I-2024', 3),                        
+('IE-0475', 'Bases De Datos', 'I-2024', 3);
+```
+Este comando agrega cursos nuevos inventados, especificando la información de cada curso.
+
+Antes de agregar cursos inventados:
+<p align="center">
+  <img src="https://i.imgur.com/ea9aixc.png" alt="Descripciones_llena">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/ceDlgsk.png" alt="A_cursosinventados">
+</p>
+
+
+
+### Agregar descripciones para los nuevos cursos
+```
+INSERT INTO Descripciones (CursoID, Descripcion, Dificultad) VALUES
+    ((SELECT CursoID FROM Cursos WHERE Nombre = 'Seguridad De La Información'), 
+    'Principios y prácticas para asegurar la información en sistemas computacionales.', 
+    'Media'),
+
+    ((SELECT CursoID FROM Cursos WHERE Nombre = 'Bases De Datos'), 
+    'Fundamentos de diseño y manejo de bases de datos relacionales y no relacionales.', 
+    'Media');
+```
+Este comando añade descripciones detalladas y niveles de dificultad para los nuevos cursos.
+
+Antes de agregar descripciones para los nuevos cursos:
+<p align="center">
+  <img src="https://i.imgur.com/YVJaBpx.png" alt="Descripciones_llena">
+</p>
+
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/636IjUS.png" alt="Descripciones_llena">
+</p>
+
+
+### Insertar los requisitos de los nuevos cursos del plan
+```
+INSERT INTO Requisitos (CursoID, RequisitoCursoID) VALUES
+    ((SELECT CursoID FROM Cursos WHERE Nombre = 'Seguridad De La Información'), 
+    (SELECT CursoID FROM Cursos WHERE Nombre = 'Circuitos Digitales II')),
+
+    ((SELECT CursoID FROM Cursos WHERE Nombre = 'Bases De Datos'), 
+    (SELECT CursoID FROM Cursos WHERE Nombre = 'Estructuras Abstractas de Datos y Algoritmos'));
+```
+Este comando configura los requisitos previos para los nuevos cursos, estableciendo qué cursos deben haberse completado antes de inscribirse.
+
+Antes de insertar requisitos de los nuevos cursos del plan:
+<p align="center">
+  <img src="https://i.imgur.com/9MzSxhJ.png" alt="A_Requisistosinventados">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/4Gcv01K.png" alt="A_Requisistosinventados">
+</p>
+
+
+### Consultar todos los cursos y sus descripciones
+```
+SELECT c.Sigla, c.Nombre, c.Semestre, c.Creditos, d.Descripcion, d.Dificultad
+FROM Cursos c
+JOIN Descripciones d ON c.CursoID = d.CursoID;
+```
+Este comando muestra toda la información sobre los cursos junto con sus descripciones y dificultades.
+
+<p align="center">
+  <img src="https://i.imgur.com/UeBiyrY.png" alt="Consultar_cursosydescripciones">
+</p>
+
+### Consultar los requisitos de un curso específico
+```
+SELECT c.CursoID, c.Sigla, c.Nombre, GROUP_CONCAT(c1.Sigla SEPARATOR ', ') AS Requisitos
+FROM Cursos c
+JOIN Requisitos r ON c.CursoID = r.CursoID
+JOIN Cursos c1 ON r.RequisitoCursoID = c1.CursoID
+WHERE c.Nombre = 'Electrónica industrial';
+```
+Este comando muestra los requisitos específicos para el curso 'Electrónica industrial', indicando qué otros cursos deben ser completados previamente.
+
+<p align="center">
+  <img src="https://i.imgur.com/EX1Mly0.png" alt="Consultar_cursoespecifico">
+</p>
+
+### Consultar para listar los cursos que no son optativos
+```
+SELECT *
+FROM Cursos
+WHERE Nombre NOT LIKE 'Optativa%';
+```
+Este comando lista todos los cursos que no son optativos, filtrando aquellos cuyos nombres no comienzan con 'Optativa'.
+
+<p align="center">
+  <img src="https://i.imgur.com/WW53vsK.png" alt="Consultar_nooptativos">
+</p>
+
+### Actualizar el nombre y créditos de 3 cursos optativos
+```
+UPDATE Cursos
+SET 
+    Sigla = 'IE-0621', 
+    Nombre = 'Verificación funcional del diseño de circuitos integrados', 
+    Semestre = 'I', 
+    Creditos = 3 
+WHERE 
+    Nombre = 'Optativa I';
+
+UPDATE Cursos
+SET 
+    Sigla = 'IE-0411', 
+    Nombre = 'Microelectrónica: Sistemas en Silicio', 
+    Semestre = 'II', 
+    Creditos = 3
+WHERE 
+    Nombre = 'Optativa II';
+
+UPDATE Cursos
+SET 
+    Sigla = 'IE-0623', 
+    Nombre = 'Microprocesadores', 
+    Semestre = 'II', 
+    Creditos = 3
+WHERE 
+    Nombre = 'Optativa III';
+```
+Este comando actualiza la información de tres cursos optativos, cambiando sus siglas, nombres, semestres y créditos.
+
+Antes de actualizar la información de tres cursos optativos:
+<p align="center">
+  <img src="https://i.imgur.com/ceDlgsk.png" alt="A_cursosinventados">
+</p>
+
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/revbqpZ.png" alt="Actualizar_optativas">
+</p>
+
+### Actualizar la descripción y dificultad de 3 cursos existentes
+```
+UPDATE Descripciones
+SET 
+    Descripcion = 'Implementación de algoritmos avanzados y estructuras de datos eficientes en C++.', 
+    Dificultad = 'Alta'
+WHERE 
+    CursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Estructuras Abstractas de Datos y Algoritmos');
+
+UPDATE Descripciones
+SET 
+    Descripcion = 'Diseño de sistemas digitales avanzados y verificación usando Verilog.', 
+    Dificultad = 'Alta'
+WHERE 
+    CursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Circuitos Digitales II');
+
+UPDATE Descripciones
+SET 
+    Descripcion = 'Desarrollo de habilidades para la propuesta y preparación del Trabajo Final de Graduación.', 
+    Dificultad = 'Alta'
+WHERE 
+    CursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Anteproyecto de TFG');
+```
+Este comando actualiza la descripción y la dificultad de tres cursos existentes para reflejar cambios en los programas de estudio.
+
+Antes de actualizar la descripción y la dificultad de tres cursos existentes.
+<p align="center">
+  <img src="https://i.imgur.com/636IjUS.png" alt="Descripciones_llena">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/ibWlwuO.png" alt="Actualizar_descripcion">
+</p>
+
+### Eliminar un curso inventado y 2 cursos del plan y sus descripciones asociadas
+```
+DELETE FROM Cursos 
+WHERE Nombre = 'Seguridad De La Información';
+
+DELETE FROM Cursos 
+WHERE Nombre = 'Administración de sistemas';
+
+DELETE FROM Cursos 
+WHERE Nombre = 'Electrónica industrial';
+```
+Este comando elimina registros de tres cursos de la base de datos, incluyendo un curso inventado y dos cursos del plan oficial.
+
+Antes de eliminar registros de tres cursos de la base de datos:
+<p align="center">
+  <img src="https://i.imgur.com/revbqpZ.png" alt="Actualizar_optativas">
+</p>
+<p align="center">
+  <img src="https://i.imgur.com/ibWlwuO.png" alt="Actualizar_descripcion">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/uQ6VX7X.png" alt="Eliminar_cursos">
+</p>
+<p align="center">
+  <img src="https://i.imgur.com/IE4OcG4.png" alt="Eliminar_descripciones">
+</p>
+
+Antes de eliminar los requisitos:
+<p align="center">
+  <img src="https://i.imgur.com/ao9NwCu.png" alt="Antes_eliminarrequisitos">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/psh7Dpd.png" alt="Despues_eliminarrequisitos">
+</p>
+
+### Eliminar requisitos de 2 cursos específicos
+```
+DELETE FROM Requisitos
+WHERE 
+    CursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Ciencia de datos para la est. y pron. de eventos') 
+    AND RequisitoCursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Modelos Probabilísticos de Señales y Sistemas');
+
+DELETE FROM Requisitos
+WHERE 
+    CursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Seguridad Ocupacional') 
+    AND RequisitoCursoID = (SELECT CursoID FROM Cursos WHERE Nombre = 'Responsabilidades en el Ejercicio Profesional de la Ingeniería Eléctrica');
+```
+    
+Este comando elimina específicamente los requisitos de dos cursos, ajustando las relaciones de dependencia en la estructura del plan de estudios.
 
 
 
