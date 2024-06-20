@@ -468,15 +468,6 @@ Después:
   <img src="https://i.imgur.com/IE4OcG4.png" alt="Eliminar_descripciones">
 </p>
 
-Antes de eliminar los requisitos:
-<p align="center">
-  <img src="https://i.imgur.com/ao9NwCu.png" alt="Antes_eliminarrequisitos">
-</p>
-
-Después:
-<p align="center">
-  <img src="https://i.imgur.com/psh7Dpd.png" alt="Despues_eliminarrequisitos">
-</p>
 
 ### Eliminar requisitos de 2 cursos específicos
 ```
@@ -492,3 +483,13 @@ WHERE
 ```
     
 Este comando elimina específicamente los requisitos de dos cursos, ajustando las relaciones de dependencia en la estructura del plan de estudios.
+
+Antes de eliminar los requisitos:
+<p align="center">
+  <img src="https://i.imgur.com/ao9NwCu.png" alt="Antes_eliminarrequisitos">
+</p>
+
+Después:
+<p align="center">
+  <img src="https://i.imgur.com/psh7Dpd.png" alt="Despues_eliminarrequisitos">
+</p>
